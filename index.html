@@ -5,115 +5,35 @@
 
 <meta name="viewport"
       content="width=device-width,
-               initial-scale=1.0,
-               maximum-scale=1.0,
-               user-scalable=no">
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no,
+      viewport-fit=cover">
 
-<meta name="theme-color" content="#6c63ff">
+<meta name="theme-color" content="#ff5c9a">
 
 <title>Son Ne Zaman?</title>
 
 <style>
 
-/* =========================================================
-   RENKLER
-========================================================= */
-
-:root {
-
-    --accent: #6c63ff;
-    --accent-rgb: 108,99,255;
-
-    --bg: #f5f6fb;
-    --card: rgba(255,255,255,.82);
-
-    --text: #18191f;
-    --muted: #777b87;
-
-    --border: rgba(0,0,0,.07);
-
-    --input: rgba(255,255,255,.9);
-
-    --green: #16a34a;
-    --green-bg: rgba(22,163,74,.10);
-
-    --yellow: #d97706;
-    --yellow-bg: rgba(217,119,6,.11);
-
-    --red: #dc2626;
-    --red-bg: rgba(220,38,38,.10);
-
-    --shadow:
-        0 8px 30px rgba(20,20,40,.055);
-
-    --shadow-hover:
-        0 15px 40px rgba(20,20,40,.10);
-
-    --radius: 22px;
-
-    --transition:
-        background .35s ease,
-        color .35s ease,
-        border-color .35s ease,
-        box-shadow .35s ease,
-        transform .25s ease;
-}
-
-
-/* =========================================================
-   KOYU TEMA
-========================================================= */
-
-body.dark {
-
-    --bg: #0e1014;
-
-    --card: rgba(25,27,33,.84);
-
-    --text: #f4f5f7;
-    --muted: #9498a4;
-
-    --border: rgba(255,255,255,.07);
-
-    --input: rgba(30,32,39,.9);
-
-    --green-bg: rgba(22,163,74,.14);
-    --yellow-bg: rgba(217,119,6,.14);
-    --red-bg: rgba(220,38,38,.14);
-
-    --shadow:
-        0 10px 35px rgba(0,0,0,.25);
-
-    --shadow-hover:
-        0 18px 45px rgba(0,0,0,.35);
-}
-
-
-/* =========================================================
-   RESET
-========================================================= */
+/* =====================================================
+   TEMEL
+===================================================== */
 
 * {
-
     box-sizing: border-box;
-
-    -webkit-tap-highlight-color:
-        transparent;
-
+    -webkit-tap-highlight-color: transparent;
 }
 
-
-html {
-
-    scroll-behavior: smooth;
-
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
 }
-
 
 body {
-
-    margin: 0;
-
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -122,22 +42,91 @@ body {
         Arial,
         sans-serif;
 
-    background: var(--bg);
+    background: #100b10;
+    color: #fff;
 
-    color: var(--text);
+    overflow-x: hidden;
 
     transition:
-        background .4s ease,
-        color .4s ease;
+        background .45s ease,
+        color .45s ease;
+}
 
-    min-height: 100vh;
-
+button,
+input {
+    font-family: inherit;
 }
 
 
-/* =========================================================
-   HAFİF ARKA PLAN EFEKTİ
-========================================================= */
+/* =====================================================
+   KIZ TEMASI
+===================================================== */
+
+body.girl {
+
+    --accent: #ff5c9a;
+    --accent2: #ff8fbb;
+    --accentRGB: 255,92,154;
+
+    --bg: #100b10;
+    --bg2: #171018;
+
+    --card: rgba(31,19,29,.86);
+    --card2: rgba(39,23,35,.92);
+
+    --text: #fff7fb;
+    --muted: #bcaab5;
+
+    --border: rgba(255,150,195,.12);
+
+    --green: #45d99b;
+    --yellow: #ffc45b;
+    --red: #ff6175;
+
+    --soft:
+        rgba(255,92,154,.10);
+
+    --glow:
+        rgba(255,92,154,.24);
+}
+
+
+/* =====================================================
+   ERKEK TEMASI
+===================================================== */
+
+body.boy {
+
+    --accent: #00aaff;
+    --accent2: #00d5ff;
+    --accentRGB: 0,170,255;
+
+    --bg: #060b11;
+    --bg2: #09131d;
+
+    --card: rgba(10,21,31,.88);
+    --card2: rgba(12,28,42,.94);
+
+    --text: #f2fbff;
+    --muted: #91a8b7;
+
+    --border: rgba(0,190,255,.13);
+
+    --green: #35e69a;
+    --yellow: #ffd05c;
+    --red: #ff5d72;
+
+    --soft:
+        rgba(0,170,255,.10);
+
+    --glow:
+        rgba(0,190,255,.28);
+}
+
+
+/* =====================================================
+   ARKA PLAN IŞIKLARI
+===================================================== */
 
 body::before {
 
@@ -145,27 +134,28 @@ body::before {
 
     position: fixed;
 
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
 
     border-radius: 50%;
 
+    top: -150px;
+    right: -120px;
+
     background:
         rgba(
-            var(--accent-rgb),
-            .08
+            var(--accentRGB),
+            .13
         );
 
-    filter: blur(80px);
-
-    top: -130px;
-    right: -120px;
+    filter: blur(75px);
 
     pointer-events: none;
 
+    z-index: -2;
+
     transition:
         background .5s ease;
-
 }
 
 
@@ -180,81 +170,65 @@ body::after {
 
     border-radius: 50%;
 
+    bottom: -150px;
+    left: -120px;
+
     background:
         rgba(
-            var(--accent-rgb),
-            .045
+            var(--accentRGB),
+            .07
         );
 
-    filter: blur(80px);
-
-    bottom: -130px;
-    left: -120px;
+    filter: blur(75px);
 
     pointer-events: none;
 
+    z-index: -2;
+
+    transition:
+        background .5s ease;
 }
 
 
-/* =========================================================
-   UYGULAMA
-========================================================= */
+/* =====================================================
+   TELEFON UYGULAMASI
+===================================================== */
 
 .app {
 
     width: 100%;
-    max-width: 650px;
+    max-width: 520px;
 
     min-height: 100vh;
 
     margin: auto;
 
-    padding-bottom: 115px;
-
     position: relative;
 
-    z-index: 1;
-
+    padding-bottom:
+        calc(
+            95px +
+            env(safe-area-inset-bottom)
+        );
 }
 
 
-/* =========================================================
+/* =====================================================
    HEADER
-========================================================= */
+===================================================== */
 
 .header {
 
     padding:
-        27px
-        20px
-        13px;
+        calc(
+            18px +
+            env(safe-area-inset-top)
+        )
+        18px
+        10px;
 
     animation:
-        headerIn .55s ease both;
-
-}
-
-
-@keyframes headerIn {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(-12px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0);
-
-    }
-
+        headerIn .5s ease both;
 }
 
 
@@ -262,12 +236,9 @@ body::after {
 
     display: flex;
 
-    justify-content:
-        space-between;
+    align-items: center;
 
-    align-items:
-        center;
-
+    justify-content: space-between;
 }
 
 
@@ -278,14 +249,13 @@ body::after {
     align-items: center;
 
     gap: 12px;
-
 }
 
 
 .logo {
 
-    width: 50px;
-    height: 50px;
+    width: 49px;
+    height: 49px;
 
     border-radius: 17px;
 
@@ -294,46 +264,54 @@ body::after {
     align-items: center;
     justify-content: center;
 
-    font-size: 25px;
+    font-size: 23px;
 
     background:
         linear-gradient(
             145deg,
             rgba(
-                var(--accent-rgb),
-                .17
+                var(--accentRGB),
+                .20
             ),
             rgba(
-                var(--accent-rgb),
-                .07
+                var(--accentRGB),
+                .06
             )
         );
 
     border:
         1px solid
         rgba(
-            var(--accent-rgb),
-            .13
+            var(--accentRGB),
+            .18
         );
 
     box-shadow:
-        0 8px 25px
+        0 8px 28px
         rgba(
-            var(--accent-rgb),
-            .08
+            var(--accentRGB),
+            .12
         );
 
     transition:
-        var(--transition);
-
+        .35s ease;
 }
 
 
-.logo:hover {
+.boy .logo {
+    box-shadow:
+        0 0 24px
+        rgba(
+            0,
+            190,
+            255,
+            .16
+        );
+}
 
-    transform:
-        translateY(-2px);
 
+.logo:active {
+    transform: scale(.92);
 }
 
 
@@ -341,104 +319,112 @@ body::after {
 
     margin: 0;
 
-    font-size: 24px;
+    font-size: 21px;
 
     font-weight: 800;
 
     letter-spacing:
-        -.7px;
-
+        -.6px;
 }
 
 
 .header p {
 
     margin:
-        4px 0 0;
+        3px 0 0;
 
-    font-size: 12px;
+    font-size: 11px;
 
     color:
         var(--muted);
-
 }
 
 
-/* =========================================================
+/* =====================================================
    TEMA BUTONU
-========================================================= */
+===================================================== */
 
-.theme-btn {
+.theme-button {
 
     width: 44px;
     height: 44px;
 
     border-radius: 15px;
 
-    background:
-        var(--card);
-
     border:
         1px solid
         var(--border);
 
+    background:
+        var(--card);
+
     color:
         var(--text);
 
-    font-size: 18px;
-
-    box-shadow:
-        var(--shadow);
+    font-size: 19px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
+    box-shadow:
+        0 7px 25px
+        rgba(0,0,0,.18);
+
     transition:
-        var(--transition);
-
+        .2s ease;
 }
 
 
-.theme-btn:active {
-
+.theme-button:active {
     transform:
-        scale(.90)
+        scale(.88)
         rotate(-8deg);
-
 }
 
 
-/* =========================================================
+/* =====================================================
    ARAMA
-========================================================= */
+===================================================== */
 
 .search {
 
     padding:
-        10px 20px 18px;
+        8px 18px 16px;
 
     animation:
-        fadeUp .5s .05s ease both;
-
+        fadeUp .45s .05s ease both;
 }
 
 
 .search-box {
-
     position: relative;
+}
 
+
+.search-icon {
+
+    position: absolute;
+
+    left: 16px;
+    top: 14px;
+
+    color:
+        var(--muted);
+
+    font-size: 19px;
+
+    pointer-events: none;
 }
 
 
 .search input {
 
     width: 100%;
+    height: 50px;
 
-    height: 53px;
-
-    border-radius: 17px;
+    border-radius: 16px;
 
     border:
         1px solid
@@ -447,33 +433,27 @@ body::after {
     outline: none;
 
     background:
-        var(--input);
+        var(--card);
 
     color:
         var(--text);
 
     padding:
-        0 17px 0 47px;
+        0 16px 0 45px;
 
-    font-size: 14px;
+    font-size: 13px;
 
     box-shadow:
-        var(--shadow);
-
-    backdrop-filter:
-        blur(14px);
+        0 8px 28px
+        rgba(0,0,0,.13);
 
     transition:
-        var(--transition);
-
+        .25s ease;
 }
 
 
 .search input::placeholder {
-
-    color:
-        var(--muted);
-
+    color: var(--muted);
 }
 
 
@@ -481,64 +461,48 @@ body::after {
 
     border-color:
         rgba(
-            var(--accent-rgb),
-            .5
+            var(--accentRGB),
+            .45
         );
 
     box-shadow:
         0 0 0 4px
         rgba(
-            var(--accent-rgb),
-            .08
+            var(--accentRGB),
+            .07
         );
-
 }
 
 
-.search-icon {
-
-    position: absolute;
-
-    left: 17px;
-    top: 15px;
-
-    font-size: 19px;
-
-    color:
-        var(--muted);
-
-}
-
-
-/* =========================================================
+/* =====================================================
    İSTATİSTİKLER
-========================================================= */
+===================================================== */
 
 .stats {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         repeat(3,1fr);
 
-    gap: 10px;
+    gap: 9px;
 
     padding:
-        0 20px 20px;
+        0 18px 18px;
 
     animation:
-        fadeUp .5s .10s ease both;
-
+        fadeUp .45s .1s ease both;
 }
 
 
 .stat {
 
     padding:
-        16px 8px;
+        14px 7px;
 
-    border-radius: 18px;
+    border-radius: 17px;
+
+    text-align: center;
 
     background:
         var(--card);
@@ -548,40 +512,27 @@ body::after {
         var(--border);
 
     box-shadow:
-        var(--shadow);
-
-    backdrop-filter:
-        blur(15px);
-
-    text-align:
-        center;
+        0 8px 25px
+        rgba(0,0,0,.12);
 
     transition:
-        var(--transition);
-
+        .25s ease;
 }
 
 
-.stat:hover {
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        var(--shadow-hover);
-
+.stat:active {
+    transform: scale(.97);
 }
 
 
 .stat-number {
 
-    font-size: 22px;
+    font-size: 20px;
 
-    font-weight: 800;
+    font-weight: 850;
 
     letter-spacing:
         -.5px;
-
 }
 
 
@@ -589,32 +540,27 @@ body::after {
 
     margin-top: 3px;
 
+    font-size: 9px;
+
     color:
         var(--muted);
-
-    font-size: 10px;
-
 }
 
 
-/* =========================================================
-   BAŞLIK
-========================================================= */
+/* =====================================================
+   BÖLÜM BAŞLIĞI
+===================================================== */
 
 .section-title {
 
     padding:
-        2px 20px 13px;
+        0 18px 12px;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        space-between;
-
+    justify-content: space-between;
 }
 
 
@@ -622,38 +568,33 @@ body::after {
 
     margin: 0;
 
-    font-size: 16px;
+    font-size: 15px;
 
-    font-weight: 750;
-
+    font-weight: 800;
 }
 
 
 .section-title span {
 
-    font-size: 11px;
+    font-size: 10px;
 
     color:
         var(--muted);
-
 }
 
 
-/* =========================================================
+/* =====================================================
    LİSTE
-========================================================= */
+===================================================== */
 
 .list {
-
-    padding:
-        0 20px;
-
+    padding: 0 18px;
 }
 
 
-/* =========================================================
+/* =====================================================
    KART
-========================================================= */
+===================================================== */
 
 .card {
 
@@ -661,545 +602,489 @@ body::after {
 
     overflow: hidden;
 
+    margin-bottom: 13px;
+
+    padding: 16px;
+
+    border-radius: 21px;
+
     background:
-        var(--card);
+        linear-gradient(
+            145deg,
+            var(--card2),
+            var(--card)
+        );
 
     border:
         1px solid
         var(--border);
 
-    border-radius:
-        var(--radius);
-
-    padding:
-        18px;
-
-    margin-bottom:
-        14px;
-
     box-shadow:
-        var(--shadow);
-
-    backdrop-filter:
-        blur(16px);
-
-    transition:
-        var(--transition);
+        0 10px 32px
+        rgba(0,0,0,.18);
 
     animation:
         cardIn .42s ease both;
 
+    transition:
+        transform .22s ease,
+        box-shadow .3s ease,
+        border .3s ease;
 }
 
 
-.card:hover {
+.card:active {
+    transform: scale(.985);
+}
 
-    transform:
-        translateY(-2px);
+
+.boy .card {
 
     box-shadow:
-        var(--shadow-hover);
+        0 10px 30px
+        rgba(0,0,0,.25),
+        0 0 25px
+        rgba(
+            0,
+            170,
+            255,
+            .025
+        );
+}
 
+
+.girl .card {
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.18),
+        0 0 25px
+        rgba(
+            255,
+            92,
+            154,
+            .025
+        );
 }
 
 
 @keyframes cardIn {
 
     from {
-
         opacity: 0;
-
         transform:
-            translateY(12px)
+            translateY(10px)
             scale(.985);
-
     }
 
     to {
-
         opacity: 1;
-
         transform:
             translateY(0)
             scale(1);
-
     }
-
 }
 
 
-/* =========================================================
+/* =====================================================
    DURUM ÇİZGİSİ
-========================================================= */
+===================================================== */
 
-.card-status-line {
+.status-line {
 
     position: absolute;
 
-    top: 0;
     left: 0;
-    bottom: 0;
+    top: 15px;
+    bottom: 15px;
 
-    width: 4px;
+    width: 3px;
 
-    transition:
-        background .35s ease;
-
+    border-radius:
+        0 5px 5px 0;
 }
 
 
-.card.green
-.card-status-line {
-
-    background:
-        var(--green);
-
+.card.green .status-line {
+    background: var(--green);
 }
 
 
-.card.yellow
-.card-status-line {
-
-    background:
-        var(--yellow);
-
+.card.yellow .status-line {
+    background: var(--yellow);
 }
 
 
-.card.red
-.card-status-line {
-
-    background:
-        var(--red);
-
+.card.red .status-line {
+    background: var(--red);
 }
 
 
-/* =========================================================
+/* =====================================================
    KART ÜST
-========================================================= */
+===================================================== */
 
 .card-top {
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    gap: 13px;
-
+    gap: 12px;
 }
 
 
 .icon {
 
-    width: 52px;
-    height: 52px;
+    width: 49px;
+    height: 49px;
 
     flex-shrink: 0;
 
-    display:
-        flex;
+    border-radius: 16px;
 
-    align-items:
-        center;
+    display: flex;
 
-    justify-content:
-        center;
+    align-items: center;
+    justify-content: center;
 
-    border-radius:
-        17px;
+    font-size: 23px;
 
     background:
         rgba(
-            var(--accent-rgb),
-            .10
+            var(--accentRGB),
+            .09
         );
 
-    font-size: 25px;
+    border:
+        1px solid
+        rgba(
+            var(--accentRGB),
+            .09
+        );
 
     transition:
-        var(--transition);
-
+        .3s ease;
 }
 
 
-.card:hover .icon {
-
-    transform:
-        scale(1.04);
-
+.card:active .icon {
+    transform: scale(.94);
 }
 
 
 .title {
 
-    font-size: 16px;
+    font-size: 15px;
 
-    font-weight: 750;
+    font-weight: 800;
 
+    line-height: 1.2;
 }
 
 
 .last-date {
 
-    margin-top: 5px;
+    margin-top: 4px;
 
-    font-size: 11px;
+    font-size: 10px;
 
     color:
         var(--muted);
-
 }
 
 
-/* =========================================================
+/* =====================================================
    GERİ SAYIM
-========================================================= */
+===================================================== */
 
 .countdown {
 
-    margin-top: 17px;
+    margin-top: 14px;
 
     padding:
-        17px 10px;
+        15px 10px;
 
-    border-radius:
-        18px;
+    border-radius: 17px;
 
-    text-align:
-        center;
+    text-align: center;
 
     transition:
-        var(--transition);
-
+        .3s ease;
 }
 
 
 .card.green .countdown {
-
     background:
-        var(--green-bg);
-
+        rgba(69,217,155,.08);
 }
 
 
 .card.yellow .countdown {
-
     background:
-        var(--yellow-bg);
-
+        rgba(255,196,91,.08);
 }
 
 
 .card.red .countdown {
-
     background:
-        var(--red-bg);
-
+        rgba(255,97,117,.08);
 }
 
 
 .count-number {
 
-    font-size: 31px;
+    font-size: 29px;
+
+    font-weight: 900;
 
     line-height: 1;
-
-    font-weight: 850;
 
     letter-spacing:
         -1px;
 
     animation:
-        numberIn .35s ease;
+        numberIn .3s ease;
+}
 
+
+.count-text {
+
+    margin-top: 5px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing:
+        .5px;
+
+    opacity: .65;
 }
 
 
 @keyframes numberIn {
 
     from {
-
         opacity: 0;
-
-        transform:
-            scale(.92);
-
+        transform: scale(.9);
     }
 
     to {
-
         opacity: 1;
-
-        transform:
-            scale(1);
-
+        transform: scale(1);
     }
-
 }
 
 
-.count-text {
-
-    margin-top: 6px;
-
-    font-size: 10px;
-
-    font-weight: 750;
-
-    letter-spacing:
-        .5px;
-
-    opacity:
-        .72;
-
-}
-
-
-/* =========================================================
+/* =====================================================
    DETAYLAR
-========================================================= */
+===================================================== */
 
 .details {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         1fr 1fr;
 
-    gap: 8px;
+    gap: 7px;
 
-    margin-top:
-        10px;
-
+    margin-top: 8px;
 }
 
 
 .detail {
 
+    padding: 9px;
+
+    border-radius: 13px;
+
     background:
-        var(--bg);
+        rgba(
+            255,
+            255,
+            255,
+            .025
+        );
 
     border:
         1px solid
         var(--border);
-
-    border-radius:
-        14px;
-
-    padding:
-        10px;
-
 }
 
 
 .detail-label {
 
-    font-size: 9px;
+    font-size: 8px;
 
     color:
         var(--muted);
-
 }
 
 
 .detail-value {
 
-    margin-top: 4px;
+    margin-top: 3px;
 
-    font-size: 11px;
+    font-size: 10px;
 
-    font-weight: 650;
-
+    font-weight: 700;
 }
 
 
-/* =========================================================
-   DURUM YAZISI
-========================================================= */
+/* =====================================================
+   DURUM
+===================================================== */
 
 .status {
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
     gap: 6px;
 
-    margin-top:
-        13px;
+    margin-top: 11px;
 
-    font-size:
-        11px;
+    font-size: 10px;
 
-    font-weight:
-        750;
-
+    font-weight: 800;
 }
 
 
 .status.green {
-
-    color:
-        var(--green);
-
+    color: var(--green);
 }
 
 
 .status.yellow {
-
-    color:
-        var(--yellow);
-
+    color: var(--yellow);
 }
 
 
 .status.red {
-
-    color:
-        var(--red);
-
+    color: var(--red);
 }
 
 
-/* =========================================================
+/* =====================================================
    BUTONLAR
-========================================================= */
+===================================================== */
 
 .buttons {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
-        1fr 45px 45px;
+        1fr 43px 43px;
 
-    gap:
-        8px;
+    gap: 7px;
 
-    margin-top:
-        14px;
+    margin-top: 12px;
+}
 
+
+.done,
+.edit,
+.delete {
+
+    height: 42px;
+
+    border-radius: 13px;
+
+    border: 1px solid
+        var(--border);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    transition:
+        .18s ease;
 }
 
 
 .done {
 
-    height: 44px;
-
-    border-radius:
-        14px;
+    color: #fff;
 
     background:
-        var(--accent);
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent2)
+        );
 
-    color:
-        white;
-
-    font-size:
-        12px;
-
-    font-weight:
-        750;
+    border: none;
 
     box-shadow:
         0 7px 18px
         rgba(
-            var(--accent-rgb),
-            .18
+            var(--accentRGB),
+            .20
         );
-
-    transition:
-        transform .18s ease,
-        box-shadow .18s ease;
-
 }
 
 
-.done:hover {
-
-    transform:
-        translateY(-1px);
+.boy .done {
 
     box-shadow:
-        0 10px 23px
+        0 0 18px
         rgba(
-            var(--accent-rgb),
-            .25
+            0,
+            180,
+            255,
+            .17
         );
-
 }
 
 
-.done:active {
+.done:active,
+.edit:active,
+.delete:active {
 
     transform:
-        scale(.96);
-
+        scale(.91);
 }
 
 
 .edit,
 .delete {
 
-    height: 44px;
-
-    border-radius:
-        14px;
-
     background:
-        var(--bg);
-
-    border:
-        1px solid
-        var(--border);
+        rgba(
+            255,
+            255,
+            255,
+            .025
+        );
 
     color:
         var(--text);
-
-    font-size:
-        16px;
-
-    transition:
-        transform .18s ease,
-        background .25s ease;
-
-}
-
-
-.edit:active,
-.delete:active {
-
-    transform:
-        scale(.90);
-
 }
 
 
 .delete {
-
-    color:
-        var(--red);
-
+    color: var(--red);
 }
 
 
-/* =========================================================
-   EKLE BUTONU
-========================================================= */
+/* =====================================================
+   ALT EKLE BUTONU
+===================================================== */
 
-.add {
+.add-button {
 
     position: fixed;
 
-    z-index: 10;
+    z-index: 20;
 
-    bottom: 20px;
+    bottom:
+        calc(
+            17px +
+            env(safe-area-inset-bottom)
+        );
 
     left: 50%;
 
@@ -1207,67 +1092,53 @@ body::after {
         translateX(-50%);
 
     width:
-        calc(100% - 40px);
+        calc(100% - 36px);
 
     max-width:
-        610px;
+        484px;
 
-    height:
-        55px;
+    height: 53px;
 
-    border-radius:
-        18px;
+    border: none;
+
+    border-radius: 17px;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 850;
 
     background:
-        var(--accent);
-
-    color:
-        white;
-
-    font-size:
-        13px;
-
-    font-weight:
-        750;
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent2)
+        );
 
     box-shadow:
-        0 12px 30px
+        0 10px 30px
         rgba(
-            var(--accent-rgb),
-            .30
+            var(--accentRGB),
+            .28
         );
 
     transition:
-        transform .2s ease,
-        box-shadow .2s ease;
-
+        .2s ease;
 }
 
 
-.add:hover {
-
-    box-shadow:
-        0 15px 35px
-        rgba(
-            var(--accent-rgb),
-            .38
-        );
-
-}
-
-
-.add:active {
+.add-button:active {
 
     transform:
         translateX(-50%)
         scale(.96);
-
 }
 
 
-/* =========================================================
-   MODAL ARKA PLAN
-========================================================= */
+/* =====================================================
+   MODAL
+===================================================== */
 
 .modal-bg {
 
@@ -1275,45 +1146,44 @@ body::after {
 
     inset: 0;
 
-    z-index: 50;
+    z-index: 100;
+
+    display: none;
+
+    align-items: flex-end;
+
+    justify-content: center;
 
     background:
-        rgba(0,0,0,.52);
+        rgba(0,0,0,.65);
 
     backdrop-filter:
-        blur(7px);
-
-    display:
-        none;
-
-    align-items:
-        flex-end;
-
-    justify-content:
-        center;
-
+        blur(8px);
 }
 
-
-/* =========================================================
-   MODAL
-========================================================= */
 
 .modal {
 
     width: 100%;
 
-    max-width:
-        650px;
-
-    background:
-        var(--card);
-
-    border-radius:
-        28px 28px 0 0;
+    max-width: 520px;
 
     padding:
-        23px 20px 30px;
+        22px 18px
+        calc(
+            24px +
+            env(safe-area-inset-bottom)
+        );
+
+    border-radius:
+        27px 27px 0 0;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--card2),
+            var(--card)
+        );
 
     border:
         1px solid
@@ -1321,54 +1191,39 @@ body::after {
 
     box-shadow:
         0 -15px 50px
-        rgba(0,0,0,.18);
-
-    backdrop-filter:
-        blur(22px);
+        rgba(0,0,0,.35);
 
     animation:
-        modalIn .32s cubic-bezier(.2,.8,.2,1);
-
+        modalIn .32s
+        cubic-bezier(.2,.8,.2,1);
 }
 
 
 @keyframes modalIn {
 
     from {
-
+        opacity: .7;
         transform:
             translateY(100%);
-
-        opacity: .7;
-
     }
 
     to {
-
+        opacity: 1;
         transform:
             translateY(0);
-
-        opacity: 1;
-
     }
-
 }
 
 
 .modal-head {
 
-    display:
-        flex;
+    display: flex;
 
-    justify-content:
-        space-between;
+    align-items: center;
 
-    align-items:
-        center;
+    justify-content: space-between;
 
-    margin-bottom:
-        18px;
-
+    margin-bottom: 15px;
 }
 
 
@@ -1376,12 +1231,9 @@ body::after {
 
     margin: 0;
 
-    font-size:
-        20px;
+    font-size: 19px;
 
-    font-weight:
-        800;
-
+    font-weight: 850;
 }
 
 
@@ -1390,54 +1242,52 @@ body::after {
     width: 38px;
     height: 38px;
 
-    border-radius:
-        13px;
+    border-radius: 13px;
+
+    border: 1px solid
+        var(--border);
 
     background:
-        var(--bg);
+        rgba(
+            255,
+            255,
+            255,
+            .035
+        );
 
     color:
         var(--text);
 
-    font-size:
-        16px;
+    font-size: 15px;
 
-    transition:
-        transform .18s ease;
-
+    transition: .2s;
 }
 
 
 .close:active {
-
     transform:
         scale(.88)
         rotate(8deg);
-
 }
 
 
-/* =========================================================
+/* =====================================================
    FORM
-========================================================= */
+===================================================== */
 
 .form-label {
 
-    display:
-        block;
+    display: block;
 
     margin:
-        13px 0 7px;
+        12px 0 6px;
 
-    font-size:
-        11px;
+    font-size: 10px;
 
-    font-weight:
-        650;
+    font-weight: 700;
 
     color:
         var(--muted);
-
 }
 
 
@@ -1445,34 +1295,34 @@ body::after {
 
     width: 100%;
 
-    height: 50px;
+    height: 48px;
+
+    border-radius: 13px;
 
     border:
         1px solid
         var(--border);
 
-    border-radius:
-        14px;
-
     background:
-        var(--input);
+        rgba(
+            255,
+            255,
+            255,
+            .035
+        );
 
     color:
         var(--text);
 
+    outline: none;
+
     padding:
-        0 14px;
+        0 13px;
 
-    outline:
-        none;
-
-    font-size:
-        14px;
+    font-size: 13px;
 
     transition:
-        border .2s,
-        box-shadow .2s;
-
+        .2s ease;
 }
 
 
@@ -1480,80 +1330,68 @@ body::after {
 
     border-color:
         rgba(
-            var(--accent-rgb),
-            .5
+            var(--accentRGB),
+            .45
         );
 
     box-shadow:
         0 0 0 4px
         rgba(
-            var(--accent-rgb),
-            .07
+            var(--accentRGB),
+            .06
         );
-
 }
 
 
 .row {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         1fr 1fr;
 
-    gap:
-        10px;
-
+    gap: 9px;
 }
 
-
-/* =========================================================
-   MODAL BUTONLARI
-========================================================= */
 
 .save {
 
     width: 100%;
 
-    height: 50px;
+    height: 49px;
 
-    margin-top:
-        20px;
+    margin-top: 18px;
 
-    border-radius:
-        14px;
+    border: none;
+
+    border-radius: 14px;
 
     background:
-        var(--accent);
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent2)
+        );
 
-    color:
-        white;
+    color: white;
 
-    font-size:
-        13px;
+    font-size: 12px;
 
-    font-weight:
-        750;
+    font-weight: 850;
 
     box-shadow:
-        0 8px 20px
+        0 8px 22px
         rgba(
-            var(--accent-rgb),
+            var(--accentRGB),
             .22
         );
 
-    transition:
-        transform .18s ease;
-
+    transition: .18s;
 }
 
 
 .save:active {
-
-    transform:
-        scale(.97);
-
+    transform: scale(.97);
 }
 
 
@@ -1561,110 +1399,35 @@ body::after {
 
     width: 100%;
 
-    height: 45px;
+    height: 43px;
 
-    margin-top:
-        8px;
+    margin-top: 7px;
 
-    border-radius:
-        14px;
+    border: 1px solid
+        var(--border);
 
-    background:
-        var(--bg);
-
-    color:
-        var(--text);
-
-    font-size:
-        12px;
-
-}
-
-
-/* =========================================================
-   BOŞ DURUM
-========================================================= */
-
-.empty {
-
-    text-align:
-        center;
-
-    padding:
-        55px 20px;
-
-    color:
-        var(--muted);
-
-    animation:
-        fadeUp .4s ease;
-
-}
-
-
-.empty-icon {
-
-    width: 75px;
-    height: 75px;
-
-    margin:
-        0 auto 15px;
-
-    border-radius:
-        25px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    font-size:
-        36px;
+    border-radius: 13px;
 
     background:
         rgba(
-            var(--accent-rgb),
-            .09
+            255,
+            255,
+            255,
+            .025
         );
-
-}
-
-
-.empty h3 {
-
-    margin:
-        0 0 7px;
 
     color:
         var(--text);
 
-    font-size:
-        16px;
+    font-size: 11px;
 
+    font-weight: 700;
 }
 
 
-.empty p {
-
-    margin:
-        0;
-
-    font-size:
-        12px;
-
-    line-height:
-        1.6;
-
-}
-
-
-/* =========================================================
+/* =====================================================
    TEMA PANELİ
-========================================================= */
+===================================================== */
 
 .theme-panel {
 
@@ -1672,23 +1435,19 @@ body::after {
 
     inset: 0;
 
-    z-index: 60;
+    z-index: 120;
+
+    display: none;
+
+    align-items: flex-end;
+
+    justify-content: center;
 
     background:
-        rgba(0,0,0,.52);
+        rgba(0,0,0,.65);
 
     backdrop-filter:
-        blur(7px);
-
-    display:
-        none;
-
-    align-items:
-        flex-end;
-
-    justify-content:
-        center;
-
+        blur(8px);
 }
 
 
@@ -1696,165 +1455,303 @@ body::after {
 
     width: 100%;
 
-    max-width:
-        650px;
-
-    background:
-        var(--card);
-
-    border-radius:
-        28px 28px 0 0;
+    max-width: 520px;
 
     padding:
-        25px 20px 30px;
+        23px 18px
+        calc(
+            24px +
+            env(safe-area-inset-bottom)
+        );
+
+    border-radius:
+        27px 27px 0 0;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--card2),
+            var(--card)
+        );
 
     border:
         1px solid
         var(--border);
 
-    backdrop-filter:
-        blur(22px);
-
     animation:
-        modalIn .32s cubic-bezier(.2,.8,.2,1);
-
+        modalIn .32s
+        cubic-bezier(.2,.8,.2,1);
 }
 
 
 .theme-content h2 {
 
     margin:
+        0 0 5px;
+
+    font-size: 19px;
+
+    font-weight: 850;
+}
+
+
+.theme-subtitle {
+
+    margin:
         0 0 18px;
 
-    font-size:
-        19px;
+    font-size: 10px;
 
+    color:
+        var(--muted);
 }
 
 
-/* =========================================================
-   RENKLER
-========================================================= */
+/* =====================================================
+   TEMA SEÇİM KARTLARI
+===================================================== */
 
-.theme-options {
+.theme-choice {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
-        repeat(4,1fr);
+        1fr 1fr;
 
-    gap:
-        11px;
+    gap: 10px;
 
+    margin-bottom: 17px;
 }
 
 
-.color {
+.theme-card {
 
-    height:
-        50px;
+    position: relative;
 
-    border-radius:
-        15px;
+    height: 105px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
 
     border:
-        3px solid
+        2px solid
         transparent;
 
-    transition:
-        transform .2s ease,
-        border .2s ease;
+    padding: 14px;
 
+    text-align: left;
+
+    color: white;
+
+    transition:
+        .22s ease;
 }
 
 
-.color:active {
+.theme-card:active {
 
     transform:
-        scale(.90);
-
+        scale(.96);
 }
 
 
-.color.active {
+.theme-card.girl-theme {
+
+    background:
+        linear-gradient(
+            145deg,
+            #351624,
+            #1d1018
+        );
 
     border-color:
-        var(--text);
-
-    transform:
-        scale(.94);
-
+        rgba(
+            255,
+            92,
+            154,
+            .15
+        );
 }
 
 
-/* =========================================================
-   ANİMASYON
-========================================================= */
+.theme-card.boy-theme {
+
+    background:
+        linear-gradient(
+            145deg,
+            #09263a,
+            #07131e
+        );
+
+    border-color:
+        rgba(
+            0,
+            190,
+            255,
+            .15
+        );
+}
+
+
+.theme-card.active {
+
+    border-color:
+        var(--accent);
+
+    box-shadow:
+        0 0 25px
+        rgba(
+            var(--accentRGB),
+            .18
+        );
+}
+
+
+.theme-card-icon {
+
+    font-size: 25px;
+
+    margin-bottom: 7px;
+}
+
+
+.theme-card-title {
+
+    font-size: 12px;
+
+    font-weight: 850;
+}
+
+
+.theme-card-desc {
+
+    margin-top: 3px;
+
+    font-size: 8px;
+
+    opacity: .55;
+}
+
+
+/* =====================================================
+   BOŞ DURUM
+===================================================== */
+
+.empty {
+
+    padding:
+        55px 20px;
+
+    text-align: center;
+
+    color:
+        var(--muted);
+
+    animation:
+        fadeUp .4s ease;
+}
+
+
+.empty-icon {
+
+    width: 72px;
+    height: 72px;
+
+    margin:
+        0 auto 15px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 24px;
+
+    background:
+        rgba(
+            var(--accentRGB),
+            .08
+        );
+
+    font-size: 34px;
+}
+
+
+.empty h3 {
+
+    margin:
+        0 0 6px;
+
+    font-size: 15px;
+
+    color:
+        var(--text);
+}
+
+
+.empty p {
+
+    margin: 0;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   ANİMASYONLAR
+===================================================== */
 
 @keyframes fadeUp {
 
     from {
-
         opacity: 0;
-
         transform:
             translateY(9px);
-
     }
 
     to {
-
         opacity: 1;
-
         transform:
             translateY(0);
-
     }
-
 }
 
 
-/* =========================================================
-   MASAÜSTÜ
-========================================================= */
+/* =====================================================
+   KÜÇÜK TELEFONLAR
+===================================================== */
 
-@media (min-width: 700px) {
+@media (max-width: 360px) {
 
-    body {
-
-        background:
-            #e9ebf1;
-
+    .header h1 {
+        font-size: 19px;
     }
 
-    body.dark {
-
-        background:
-            #090a0d;
-
+    .card {
+        padding: 14px;
     }
 
-    .app {
-
-        background:
-            var(--bg);
-
-        min-height:
-            100vh;
-
-        box-shadow:
-            0 0 60px
-            rgba(0,0,0,.05);
-
+    .count-number {
+        font-size: 27px;
     }
 
+    .details {
+        gap: 5px;
+    }
+
+    .buttons {
+        grid-template-columns:
+            1fr 40px 40px;
+    }
 }
 
 
-/* =========================================================
-   HAREKET AZALTMA
-========================================================= */
+/* =====================================================
+   ANİMASYONLARI AZALT
+===================================================== */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -1865,187 +1762,182 @@ body::after {
         animation-duration:
             .01ms !important;
 
-        animation-iteration-count:
-            1 !important;
-
         transition-duration:
             .01ms !important;
-
     }
-
 }
 
 </style>
 </head>
 
 
-<body>
+<body class="girl">
+
 
 <div class="app">
 
 
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-    <header class="header">
+<header class="header">
 
-        <div class="header-row">
+    <div class="header-row">
 
-            <div class="logo-area">
+        <div class="logo-area">
 
-                <div class="logo">
-                    🧠
-                </div>
+            <div class="logo" id="logo">
+                🎀
+            </div>
 
-                <div>
+            <div>
 
-                    <h1>
-                        Son Ne Zaman?
-                    </h1>
+                <h1>
+                    Son Ne Zaman?
+                </h1>
 
-                    <p>
-                        Geçmişini unutma.
-                    </p>
-
-                </div>
+                <p id="subtitle">
+                    Kendin için küçük bir hatırlatıcı.
+                </p>
 
             </div>
 
-
-            <button
-                class="theme-btn"
-                id="themeButton"
-                onclick="openTheme()">
-
-                🌙
-
-            </button>
-
         </div>
 
-    </header>
 
+        <button
+            class="theme-button"
+            onclick="openTheme()"
+            id="themeButton">
 
-    <!-- =====================================================
-         ARAMA
-    ====================================================== -->
+            🎨
 
-    <div class="search">
-
-        <div class="search-box">
-
-            <span class="search-icon">
-                ⌕
-            </span>
-
-            <input
-                id="search"
-                type="text"
-                placeholder="Bir şey ara..."
-                oninput="render()">
-
-        </div>
+        </button>
 
     </div>
 
-
-    <!-- =====================================================
-         İSTATİSTİKLER
-    ====================================================== -->
-
-    <div class="stats">
-
-        <div class="stat">
-
-            <div
-                class="stat-number"
-                id="total">
-
-                0
-
-            </div>
-
-            <div class="stat-label">
-                Toplam
-            </div>
-
-        </div>
+</header>
 
 
-        <div class="stat">
+<!-- =====================================================
+     ARAMA
+===================================================== -->
 
-            <div
-                class="stat-number"
-                id="today">
+<div class="search">
 
-                0
+    <div class="search-box">
 
-            </div>
-
-            <div class="stat-label">
-                Bugün
-            </div>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div
-                class="stat-number"
-                id="late">
-
-                0
-
-            </div>
-
-            <div class="stat-label">
-                Geciken
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         BAŞLIK
-    ====================================================== -->
-
-    <div class="section-title">
-
-        <h2>
-            Takip ettiklerin
-        </h2>
-
-        <span id="itemCount">
-            0 kayıt
+        <span class="search-icon">
+            ⌕
         </span>
 
+        <input
+            id="search"
+            type="text"
+            placeholder="Takiplerinde ara..."
+            oninput="render()">
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     İSTATİSTİKLER
+===================================================== -->
+
+<div class="stats">
+
+    <div class="stat">
+
+        <div
+            class="stat-number"
+            id="total">
+
+            0
+
+        </div>
+
+        <div class="stat-label">
+            Toplam
+        </div>
+
     </div>
 
 
-    <!-- =====================================================
-         LİSTE
-    ====================================================== -->
+    <div class="stat">
 
-    <div
-        class="list"
-        id="list">
+        <div
+            class="stat-number"
+            id="today">
+
+            0
+
+        </div>
+
+        <div class="stat-label">
+            Bugün
+        </div>
 
     </div>
+
+
+    <div class="stat">
+
+        <div
+            class="stat-number"
+            id="late">
+
+            0
+
+        </div>
+
+        <div class="stat-label">
+            Geciken
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     BAŞLIK
+===================================================== -->
+
+<div class="section-title">
+
+    <h2>
+        Takip ettiklerin
+    </h2>
+
+    <span id="itemCount">
+        0 kayıt
+    </span>
+
+</div>
+
+
+<!-- =====================================================
+     LİSTE
+===================================================== -->
+
+<div
+    class="list"
+    id="list">
+</div>
 
 
 </div>
 
 
-<!-- =========================================================
-     EKLE BUTONU
-========================================================= -->
+<!-- =====================================================
+     EKLE
+===================================================== -->
 
 <button
-    class="add"
+    class="add-button"
     onclick="openAdd()">
 
     ＋ Yeni takip ekle
@@ -2053,9 +1945,9 @@ body::after {
 </button>
 
 
-<!-- =========================================================
-     EKLE / DÜZENLE MODALI
-========================================================= -->
+<!-- =====================================================
+     MODAL
+===================================================== -->
 
 <div
     class="modal-bg"
@@ -2102,8 +1994,7 @@ body::after {
                     id="emoji"
                     type="text"
                     maxlength="2"
-                    value="🧠"
-                    placeholder="🪒">
+                    value="🧠">
 
             </div>
 
@@ -2156,9 +2047,9 @@ body::after {
 </div>
 
 
-<!-- =========================================================
-     TEMA PANELİ
-========================================================= -->
+<!-- =====================================================
+     TEMA
+===================================================== -->
 
 <div
     class="theme-panel"
@@ -2167,99 +2058,66 @@ body::after {
     <div class="theme-content">
 
         <h2>
-            Görünüm
+            Temanı seç
         </h2>
 
-
-        <button
-            class="cancel"
-            onclick="toggleDark()"
-            id="darkToggle">
-
-            🌙 Koyu / Açık Tema
-
-        </button>
+        <p class="theme-subtitle">
+            Uygulamanın görünümünü kendine göre ayarla.
+        </p>
 
 
-        <h2
-            style="margin-top:24px">
-
-            Tema rengi
-
-        </h2>
+        <div class="theme-choice">
 
 
-        <div class="theme-options">
+            <!-- KIZ -->
 
             <button
-                class="color"
-                data-color="#6c63ff"
-                style="background:#6c63ff"
-                onclick="setAccent('#6c63ff')">
+                class="theme-card girl-theme"
+                id="girlTheme"
+                onclick="setTheme('girl')">
+
+                <div class="theme-card-icon">
+                    🎀
+                </div>
+
+                <div class="theme-card-title">
+                    Şirin Pembe
+                </div>
+
+                <div class="theme-card-desc">
+                    Yumuşak ve zarif
+                </div>
+
             </button>
 
 
-            <button
-                class="color"
-                data-color="#2563eb"
-                style="background:#2563eb"
-                onclick="setAccent('#2563eb')">
-            </button>
-
+            <!-- ERKEK -->
 
             <button
-                class="color"
-                data-color="#10b981"
-                style="background:#10b981"
-                onclick="setAccent('#10b981')">
+                class="theme-card boy-theme"
+                id="boyTheme"
+                onclick="setTheme('boy')">
+
+                <div class="theme-card-icon">
+                    ⚡
+                </div>
+
+                <div class="theme-card-title">
+                    Neon Mavi
+                </div>
+
+                <div class="theme-card-desc">
+                    Koyu ve teknolojik
+                </div>
+
             </button>
 
-
-            <button
-                class="color"
-                data-color="#ec4899"
-                style="background:#ec4899"
-                onclick="setAccent('#ec4899')">
-            </button>
-
-
-            <button
-                class="color"
-                data-color="#f97316"
-                style="background:#f97316"
-                onclick="setAccent('#f97316')">
-            </button>
-
-
-            <button
-                class="color"
-                data-color="#ef4444"
-                style="background:#ef4444"
-                onclick="setAccent('#ef4444')">
-            </button>
-
-
-            <button
-                class="color"
-                data-color="#8b5cf6"
-                style="background:#8b5cf6"
-                onclick="setAccent('#8b5cf6')">
-            </button>
-
-
-            <button
-                class="color"
-                data-color="#14b8a6"
-                style="background:#14b8a6"
-                onclick="setAccent('#14b8a6')">
-            </button>
 
         </div>
 
 
         <button
             class="cancel"
-            style="margin-top:20px"
             onclick="closeTheme()">
 
             Kapat
@@ -2273,15 +2131,15 @@ body::after {
 
 <script>
 
-/* =========================================================
+/* =====================================================
    STORAGE
-========================================================= */
+===================================================== */
 
 const STORAGE_KEY =
-    "son_ne_zaman_v3";
+    "son_ne_zaman_v4";
 
 const SETTINGS_KEY =
-    "son_ne_zaman_settings_v3";
+    "son_ne_zaman_settings_v4";
 
 
 let items =
@@ -2303,23 +2161,9 @@ let settings =
 let editingId = null;
 
 
-/* =========================================================
-   AYARLARI KAYDET
-========================================================= */
-
-function saveSettings() {
-
-    localStorage.setItem(
-        SETTINGS_KEY,
-        JSON.stringify(settings)
-    );
-
-}
-
-
-/* =========================================================
-   VERİLERİ KAYDET
-========================================================= */
+/* =====================================================
+   VERİ KAYDET
+===================================================== */
 
 function saveData() {
 
@@ -2331,14 +2175,27 @@ function saveData() {
 }
 
 
-/* =========================================================
+/* =====================================================
+   AYAR KAYDET
+===================================================== */
+
+function saveSettings() {
+
+    localStorage.setItem(
+        SETTINGS_KEY,
+        JSON.stringify(settings)
+    );
+
+}
+
+
+/* =====================================================
    BUGÜN
-========================================================= */
+===================================================== */
 
 function todayString() {
 
-    const d =
-        new Date();
+    const d = new Date();
 
     const y =
         d.getFullYear();
@@ -2358,50 +2215,47 @@ function todayString() {
 }
 
 
-/* =========================================================
-   TARİHİ DATE'E ÇEVİR
-========================================================= */
+/* =====================================================
+   TARİH
+===================================================== */
 
 function dateToDate(value) {
 
-    const parts =
+    const p =
         value.split("-")
         .map(Number);
 
     return new Date(
-        parts[0],
-        parts[1] - 1,
-        parts[2]
+        p[0],
+        p[1] - 1,
+        p[2]
     );
 
 }
 
 
-/* =========================================================
-   İKİ TARİH ARASI GÜN
-========================================================= */
+/* =====================================================
+   GÜN FARKI
+===================================================== */
 
 function daysBetween(
     date1,
     date2
 ) {
 
-    const a =
-        dateToDate(date1);
-
-    const b =
-        dateToDate(date2);
-
     return Math.round(
-        (b - a) / 86400000
+        (
+            dateToDate(date2) -
+            dateToDate(date1)
+        ) / 86400000
     );
 
 }
 
 
-/* =========================================================
-   TARİHE GÜN EKLE
-========================================================= */
+/* =====================================================
+   GÜN EKLE
+===================================================== */
 
 function addDays(
     dateString,
@@ -2436,18 +2290,17 @@ function addDays(
 }
 
 
-/* =========================================================
-   TARİHİ GÜZEL YAZ
-========================================================= */
+/* =====================================================
+   TARİH GÖSTER
+===================================================== */
 
 function formatDate(
     dateString
 ) {
 
-    const d =
-        dateToDate(dateString);
-
-    return d.toLocaleDateString(
+    return dateToDate(
+        dateString
+    ).toLocaleDateString(
         "tr-TR",
         {
             day: "2-digit",
@@ -2459,9 +2312,9 @@ function formatDate(
 }
 
 
-/* =========================================================
+/* =====================================================
    SONRAKİ TARİH
-========================================================= */
+===================================================== */
 
 function getNextDate(item) {
 
@@ -2473,36 +2326,33 @@ function getNextDate(item) {
 }
 
 
-/* =========================================================
+/* =====================================================
    GERİ SAYIM
-========================================================= */
+===================================================== */
 
 function getCountdown(item) {
 
     const next =
         getNextDate(item);
 
-    const today =
-        todayString();
-
-    const remaining =
-        daysBetween(
-            today,
-            next
-        );
-
-
     return {
-        next,
-        remaining
+
+        next: next,
+
+        remaining:
+            daysBetween(
+                todayString(),
+                next
+            )
+
     };
 
 }
 
 
-/* =========================================================
+/* =====================================================
    DURUM
-========================================================= */
+===================================================== */
 
 function getStatus(item) {
 
@@ -2516,12 +2366,7 @@ function getStatus(item) {
         Number(item.cycle);
 
 
-    /*
-       Döngünün son %30'luk kısmı
-       sarı olsun.
-    */
-
-    const warningLimit =
+    const warning =
         Math.max(
             1,
             Math.ceil(
@@ -2551,8 +2396,7 @@ function getStatus(item) {
 
 
     if (
-        remaining <=
-        warningLimit
+        remaining <= warning
     ) {
 
         return {
@@ -2571,27 +2415,27 @@ function getStatus(item) {
 }
 
 
-/* =========================================================
+/* =====================================================
    GERİ SAYIM YAZISI
-========================================================= */
+===================================================== */
 
 function countdownText(item) {
 
-    const data =
-        getCountdown(item);
-
     const days =
-        data.remaining;
+        getCountdown(item)
+        .remaining;
 
 
     if (days < 0) {
 
-        const late =
-            Math.abs(days);
-
         return {
-            number: late,
-            text: "GÜN GECİKTİ"
+
+            number:
+                Math.abs(days),
+
+            text:
+                "GÜN GECİKTİ"
+
         };
 
     }
@@ -2600,8 +2444,11 @@ function countdownText(item) {
     if (days === 0) {
 
         return {
+
             number: "0",
+
             text: "BUGÜN"
+
         };
 
     }
@@ -2612,50 +2459,41 @@ function countdownText(item) {
         number: days,
 
         text:
-            days === 1
-                ? "GÜN KALDI"
-                : "GÜN KALDI"
+            "GÜN KALDI"
 
     };
 
 }
 
 
-/* =========================================================
+/* =====================================================
    HTML GÜVENLİĞİ
-========================================================= */
+===================================================== */
 
 function escapeHtml(text) {
 
     const div =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
-    div.textContent =
-        text;
+    div.textContent = text;
 
     return div.innerHTML;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    RENDER
-========================================================= */
+===================================================== */
 
 function render() {
 
     const list =
-        document.getElementById(
-            "list"
-        );
+        document.getElementById("list");
 
 
     const search =
-        document.getElementById(
-            "search"
-        )
+        document.getElementById("search")
         .value
         .toLowerCase()
         .trim();
@@ -2669,8 +2507,6 @@ function render() {
                 .includes(search)
         );
 
-
-    /* İSTATİSTİKLER */
 
     document.getElementById(
         "total"
@@ -2693,8 +2529,8 @@ function render() {
     ).textContent =
         items.filter(
             item =>
-                getStatus(item)
-                .type === "red"
+                getStatus(item).type ===
+                "red"
         ).length;
 
 
@@ -2704,16 +2540,10 @@ function render() {
         `${filtered.length} kayıt`;
 
 
-    /* ÖNCE KIRMIZI,
-       SONRA SARI,
-       SONRA YEŞİL */
-
     const priority = {
 
         red: 3,
-
         yellow: 2,
-
         green: 1
 
     };
@@ -2742,17 +2572,12 @@ function render() {
 
 
             return
-                getCountdown(a)
-                .remaining -
-
-                getCountdown(b)
-                .remaining;
+                getCountdown(a).remaining -
+                getCountdown(b).remaining;
 
         }
     );
 
-
-    /* BOŞ */
 
     if (
         filtered.length === 0
@@ -2763,17 +2588,23 @@ function render() {
             <div class="empty">
 
                 <div class="empty-icon">
-                    🧠
+                    ${items.length === 0 ? "✨" : "🔎"}
                 </div>
 
                 <h3>
-                    Henüz takip yok
+                    ${
+                        items.length === 0
+                        ? "Henüz takip eklemedin"
+                        : "Sonuç bulunamadı"
+                    }
                 </h3>
 
                 <p>
-                    Ne zaman yaptığını
-                    hatırlamak istediğin
-                    bir şey ekle.
+                    ${
+                        items.length === 0
+                        ? "Hatırlamak istediğin bir şeyi ekleyerek başlayabilirsin."
+                        : "Başka bir kelimeyle tekrar deneyebilirsin."
+                    }
                 </p>
 
             </div>
@@ -2784,8 +2615,6 @@ function render() {
 
     }
 
-
-    /* KARTLAR */
 
     list.innerHTML =
         filtered
@@ -2808,12 +2637,13 @@ function render() {
                     class="card ${status.type}"
                     style="
                         animation-delay:
-                        ${Math.min(index * 0.045,.25)}s
+                        ${Math.min(
+                            index * .045,
+                            .25
+                        )}s
                     ">
 
-                    <div
-                        class="card-status-line">
-                    </div>
+                    <div class="status-line"></div>
 
 
                     <div class="card-top">
@@ -2838,8 +2668,7 @@ function render() {
                             </div>
 
 
-                            <div
-                                class="last-date">
+                            <div class="last-date">
 
                                 Son yaptığın:
                                 ${formatDate(
@@ -2855,16 +2684,13 @@ function render() {
 
                     <div class="countdown">
 
-                        <div
-                            class="count-number">
+                        <div class="count-number">
 
                             ${count.number}
 
                         </div>
 
-
-                        <div
-                            class="count-text">
+                        <div class="count-text">
 
                             ${count.text}
 
@@ -2877,15 +2703,11 @@ function render() {
 
                         <div class="detail">
 
-                            <div
-                                class="detail-label">
-
+                            <div class="detail-label">
                                 Döngü
-
                             </div>
 
-                            <div
-                                class="detail-value">
+                            <div class="detail-value">
 
                                 ${item.cycle}
                                 günde bir
@@ -2897,15 +2719,11 @@ function render() {
 
                         <div class="detail">
 
-                            <div
-                                class="detail-label">
-
+                            <div class="detail-label">
                                 Sonraki
-
                             </div>
 
-                            <div
-                                class="detail-value">
+                            <div class="detail-value">
 
                                 ${formatDate(
                                     next
@@ -2922,7 +2740,6 @@ function render() {
                         class="status ${status.type}">
 
                         ●
-
                         ${status.text}
 
                     </div>
@@ -2981,9 +2798,9 @@ function render() {
 }
 
 
-/* =========================================================
+/* =====================================================
    YENİ EKLE
-========================================================= */
+===================================================== */
 
 function openAdd() {
 
@@ -3003,7 +2820,11 @@ function openAdd() {
 
     document.getElementById(
         "emoji"
-    ).value = "🧠";
+    ).value =
+        document.body.classList
+        .contains("boy")
+        ? "⚡"
+        : "🎀";
 
 
     document.getElementById(
@@ -3025,9 +2846,9 @@ function openAdd() {
 }
 
 
-/* =========================================================
+/* =====================================================
    DÜZENLE
-========================================================= */
+===================================================== */
 
 function editItem(id) {
 
@@ -3081,9 +2902,9 @@ function editItem(id) {
 }
 
 
-/* =========================================================
+/* =====================================================
    KAYDET
-========================================================= */
+===================================================== */
 
 function saveItem() {
 
@@ -3097,7 +2918,7 @@ function saveItem() {
         document.getElementById(
             "emoji"
         ).value.trim() ||
-        "🧠";
+        "🎀";
 
 
     const cycle =
@@ -3175,7 +2996,6 @@ function saveItem() {
         item.lastDate =
             date;
 
-
     } else {
 
         items.push({
@@ -3213,9 +3033,9 @@ function saveItem() {
 }
 
 
-/* =========================================================
+/* =====================================================
    BUGÜN YAPTIM
-========================================================= */
+===================================================== */
 
 function markDone(id) {
 
@@ -3248,7 +3068,6 @@ function markDone(id) {
         item.lastDate =
             today;
 
-
         item.history.push(
             today
         );
@@ -3263,9 +3082,9 @@ function markDone(id) {
 }
 
 
-/* =========================================================
+/* =====================================================
    SİL
-========================================================= */
+===================================================== */
 
 function deleteItem(id) {
 
@@ -3301,9 +3120,9 @@ function deleteItem(id) {
 }
 
 
-/* =========================================================
+/* =====================================================
    MODAL KAPAT
-========================================================= */
+===================================================== */
 
 function closeModal() {
 
@@ -3315,9 +3134,9 @@ function closeModal() {
 }
 
 
-/* =========================================================
+/* =====================================================
    TEMA PANELİ
-========================================================= */
+===================================================== */
 
 function openTheme() {
 
@@ -3326,8 +3145,7 @@ function openTheme() {
     ).style.display =
         "flex";
 
-
-    updateColorButtons();
+    updateThemeButtons();
 
 }
 
@@ -3342,190 +3160,149 @@ function closeTheme() {
 }
 
 
-/* =========================================================
-   KOYU TEMA
-========================================================= */
+/* =====================================================
+   TEMA DEĞİŞTİR
+===================================================== */
 
-function toggleDark() {
+function setTheme(theme) {
 
-    settings.dark =
-        !document.body
-        .classList
-        .contains("dark");
-
-
-    applySettings();
+    settings.theme =
+        theme;
 
     saveSettings();
+
+    applyTheme();
+
+    updateThemeButtons();
 
 }
 
 
-/* =========================================================
-   RENK
-========================================================= */
+/* =====================================================
+   TEMA UYGULA
+===================================================== */
 
-function setAccent(color) {
+function applyTheme() {
 
-    settings.accent =
-        color;
-
-
-    applySettings();
-
-    saveSettings();
-
-    updateColorButtons();
-
-}
+    const theme =
+        settings.theme ||
+        "girl";
 
 
-/* =========================================================
-   AYARLARI UYGULA
-========================================================= */
+    document.body.classList
+        .remove(
+            "girl",
+            "boy"
+        );
 
-function applySettings() {
 
-    if (settings.dark) {
+    document.body.classList
+        .add(theme);
 
-        document.body
-            .classList
-            .add("dark");
 
+    const logo =
+        document.getElementById(
+            "logo"
+        );
+
+
+    const subtitle =
+        document.getElementById(
+            "subtitle"
+        );
+
+
+    const themeButton =
         document.getElementById(
             "themeButton"
-        ).textContent =
-            "☀️";
+        );
+
+
+    if (
+        theme === "boy"
+    ) {
+
+        logo.textContent =
+            "⚡";
+
+        subtitle.textContent =
+            "Sade, hızlı ve senin kontrolünde.";
+
+        themeButton.textContent =
+            "⚡";
+
+        document
+            .querySelector(
+                'meta[name="theme-color"]'
+            )
+            .setAttribute(
+                "content",
+                "#00aaff"
+            );
 
     } else {
 
-        document.body
-            .classList
-            .remove("dark");
+        logo.textContent =
+            "🎀";
 
-        document.getElementById(
-            "themeButton"
-        ).textContent =
-            "🌙";
+        subtitle.textContent =
+            "Kendin için küçük bir hatırlatıcı.";
+
+        themeButton.textContent =
+            "🎀";
+
+        document
+            .querySelector(
+                'meta[name="theme-color"]'
+            )
+            .setAttribute(
+                "content",
+                "#ff5c9a"
+            );
 
     }
 
-
-    const accent =
-        settings.accent ||
-        "#6c63ff";
+}
 
 
-    document.documentElement
-        .style
-        .setProperty(
-            "--accent",
-            accent
-        );
+/* =====================================================
+   AKTİF TEMA
+===================================================== */
+
+function updateThemeButtons() {
+
+    const theme =
+        settings.theme ||
+        "girl";
 
 
-    const rgb =
-        hexToRgb(accent);
-
-
-    document.documentElement
-        .style
-        .setProperty(
-            "--accent-rgb",
-            `${rgb.r},${rgb.g},${rgb.b}`
+    document
+        .getElementById(
+            "girlTheme"
+        )
+        .classList
+        .toggle(
+            "active",
+            theme === "girl"
         );
 
 
     document
-        .querySelector(
-            'meta[name="theme-color"]'
+        .getElementById(
+            "boyTheme"
         )
-        .setAttribute(
-            "content",
-            accent
+        .classList
+        .toggle(
+            "active",
+            theme === "boy"
         );
 
 }
 
 
-/* =========================================================
-   HEX → RGB
-========================================================= */
-
-function hexToRgb(hex) {
-
-    hex =
-        hex.replace("#","");
-
-
-    return {
-
-        r:
-            parseInt(
-                hex.substring(0,2),
-                16
-            ),
-
-        g:
-            parseInt(
-                hex.substring(2,4),
-                16
-            ),
-
-        b:
-            parseInt(
-                hex.substring(4,6),
-                16
-            )
-
-    };
-
-}
-
-
-/* =========================================================
-   AKTİF RENK
-========================================================= */
-
-function updateColorButtons() {
-
-    const current =
-        settings.accent ||
-        "#6c63ff";
-
-
-    document
-        .querySelectorAll(
-            ".color"
-        )
-        .forEach(
-            button => {
-
-                if (
-                    button.dataset.color
-                    ===
-                    current
-                ) {
-
-                    button.classList
-                        .add("active");
-
-                } else {
-
-                    button.classList
-                        .remove("active");
-
-                }
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   DIŞARI TIKLAYINCA KAPAT
-========================================================= */
+/* =====================================================
+   DIŞARI TIKLAMA
+===================================================== */
 
 document
     .getElementById("modalBg")
@@ -3563,27 +3340,33 @@ document
     );
 
 
-/* =========================================================
-   TARİH DEĞİŞTİKÇE SAYFAYI YENİLE
-========================================================= */
+/* =====================================================
+   HER DAKİKA KONTROL
+===================================================== */
 
 setInterval(
-    () => {
-
-        render();
-
-    },
+    render,
     60000
 );
 
 
-/* =========================================================
+/* =====================================================
    BAŞLAT
-========================================================= */
+===================================================== */
 
-applySettings();
+if (!settings.theme) {
 
-updateColorButtons();
+    settings.theme =
+        "girl";
+
+    saveSettings();
+
+}
+
+
+applyTheme();
+
+updateThemeButtons();
 
 render();
 
