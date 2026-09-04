@@ -1,1 +1,3593 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
 
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
+
+<meta name="theme-color" content="#6c63ff">
+
+<title>Son Ne Zaman?</title>
+
+<style>
+
+/* =========================================================
+   RENKLER
+========================================================= */
+
+:root {
+
+    --accent: #6c63ff;
+    --accent-rgb: 108,99,255;
+
+    --bg: #f5f6fb;
+    --card: rgba(255,255,255,.82);
+
+    --text: #18191f;
+    --muted: #777b87;
+
+    --border: rgba(0,0,0,.07);
+
+    --input: rgba(255,255,255,.9);
+
+    --green: #16a34a;
+    --green-bg: rgba(22,163,74,.10);
+
+    --yellow: #d97706;
+    --yellow-bg: rgba(217,119,6,.11);
+
+    --red: #dc2626;
+    --red-bg: rgba(220,38,38,.10);
+
+    --shadow:
+        0 8px 30px rgba(20,20,40,.055);
+
+    --shadow-hover:
+        0 15px 40px rgba(20,20,40,.10);
+
+    --radius: 22px;
+
+    --transition:
+        background .35s ease,
+        color .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease,
+        transform .25s ease;
+}
+
+
+/* =========================================================
+   KOYU TEMA
+========================================================= */
+
+body.dark {
+
+    --bg: #0e1014;
+
+    --card: rgba(25,27,33,.84);
+
+    --text: #f4f5f7;
+    --muted: #9498a4;
+
+    --border: rgba(255,255,255,.07);
+
+    --input: rgba(30,32,39,.9);
+
+    --green-bg: rgba(22,163,74,.14);
+    --yellow-bg: rgba(217,119,6,.14);
+    --red-bg: rgba(220,38,38,.14);
+
+    --shadow:
+        0 10px 35px rgba(0,0,0,.25);
+
+    --shadow-hover:
+        0 18px 45px rgba(0,0,0,.35);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    box-sizing: border-box;
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    transition:
+        background .4s ease,
+        color .4s ease;
+
+    min-height: 100vh;
+
+}
+
+
+/* =========================================================
+   HAFİF ARKA PLAN EFEKTİ
+========================================================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            var(--accent-rgb),
+            .08
+        );
+
+    filter: blur(80px);
+
+    top: -130px;
+    right: -120px;
+
+    pointer-events: none;
+
+    transition:
+        background .5s ease;
+
+}
+
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 250px;
+    height: 250px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            var(--accent-rgb),
+            .045
+        );
+
+    filter: blur(80px);
+
+    bottom: -130px;
+    left: -120px;
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================================
+   UYGULAMA
+========================================================= */
+
+.app {
+
+    width: 100%;
+    max-width: 650px;
+
+    min-height: 100vh;
+
+    margin: auto;
+
+    padding-bottom: 115px;
+
+    position: relative;
+
+    z-index: 1;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+
+    padding:
+        27px
+        20px
+        13px;
+
+    animation:
+        headerIn .55s ease both;
+
+}
+
+
+@keyframes headerIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(-12px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+.header-row {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+}
+
+
+.logo-area {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.logo {
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 17px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(
+                var(--accent-rgb),
+                .17
+            ),
+            rgba(
+                var(--accent-rgb),
+                .07
+            )
+        );
+
+    border:
+        1px solid
+        rgba(
+            var(--accent-rgb),
+            .13
+        );
+
+    box-shadow:
+        0 8px 25px
+        rgba(
+            var(--accent-rgb),
+            .08
+        );
+
+    transition:
+        var(--transition);
+
+}
+
+
+.logo:hover {
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.header h1 {
+
+    margin: 0;
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    letter-spacing:
+        -.7px;
+
+}
+
+
+.header p {
+
+    margin:
+        4px 0 0;
+
+    font-size: 12px;
+
+    color:
+        var(--muted);
+
+}
+
+
+/* =========================================================
+   TEMA BUTONU
+========================================================= */
+
+.theme-btn {
+
+    width: 44px;
+    height: 44px;
+
+    border-radius: 15px;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid
+        var(--border);
+
+    color:
+        var(--text);
+
+    font-size: 18px;
+
+    box-shadow:
+        var(--shadow);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        var(--transition);
+
+}
+
+
+.theme-btn:active {
+
+    transform:
+        scale(.90)
+        rotate(-8deg);
+
+}
+
+
+/* =========================================================
+   ARAMA
+========================================================= */
+
+.search {
+
+    padding:
+        10px 20px 18px;
+
+    animation:
+        fadeUp .5s .05s ease both;
+
+}
+
+
+.search-box {
+
+    position: relative;
+
+}
+
+
+.search input {
+
+    width: 100%;
+
+    height: 53px;
+
+    border-radius: 17px;
+
+    border:
+        1px solid
+        var(--border);
+
+    outline: none;
+
+    background:
+        var(--input);
+
+    color:
+        var(--text);
+
+    padding:
+        0 17px 0 47px;
+
+    font-size: 14px;
+
+    box-shadow:
+        var(--shadow);
+
+    backdrop-filter:
+        blur(14px);
+
+    transition:
+        var(--transition);
+
+}
+
+
+.search input::placeholder {
+
+    color:
+        var(--muted);
+
+}
+
+
+.search input:focus {
+
+    border-color:
+        rgba(
+            var(--accent-rgb),
+            .5
+        );
+
+    box-shadow:
+        0 0 0 4px
+        rgba(
+            var(--accent-rgb),
+            .08
+        );
+
+}
+
+
+.search-icon {
+
+    position: absolute;
+
+    left: 17px;
+    top: 15px;
+
+    font-size: 19px;
+
+    color:
+        var(--muted);
+
+}
+
+
+/* =========================================================
+   İSTATİSTİKLER
+========================================================= */
+
+.stats {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 10px;
+
+    padding:
+        0 20px 20px;
+
+    animation:
+        fadeUp .5s .10s ease both;
+
+}
+
+
+.stat {
+
+    padding:
+        16px 8px;
+
+    border-radius: 18px;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid
+        var(--border);
+
+    box-shadow:
+        var(--shadow);
+
+    backdrop-filter:
+        blur(15px);
+
+    text-align:
+        center;
+
+    transition:
+        var(--transition);
+
+}
+
+
+.stat:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        var(--shadow-hover);
+
+}
+
+
+.stat-number {
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    letter-spacing:
+        -.5px;
+
+}
+
+
+.stat-label {
+
+    margin-top: 3px;
+
+    color:
+        var(--muted);
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================================
+   BAŞLIK
+========================================================= */
+
+.section-title {
+
+    padding:
+        2px 20px 13px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+}
+
+
+.section-title h2 {
+
+    margin: 0;
+
+    font-size: 16px;
+
+    font-weight: 750;
+
+}
+
+
+.section-title span {
+
+    font-size: 11px;
+
+    color:
+        var(--muted);
+
+}
+
+
+/* =========================================================
+   LİSTE
+========================================================= */
+
+.list {
+
+    padding:
+        0 20px;
+
+}
+
+
+/* =========================================================
+   KART
+========================================================= */
+
+.card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        var(--radius);
+
+    padding:
+        18px;
+
+    margin-bottom:
+        14px;
+
+    box-shadow:
+        var(--shadow);
+
+    backdrop-filter:
+        blur(16px);
+
+    transition:
+        var(--transition);
+
+    animation:
+        cardIn .42s ease both;
+
+}
+
+
+.card:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        var(--shadow-hover);
+
+}
+
+
+@keyframes cardIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            scale(.985);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   DURUM ÇİZGİSİ
+========================================================= */
+
+.card-status-line {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: 4px;
+
+    transition:
+        background .35s ease;
+
+}
+
+
+.card.green
+.card-status-line {
+
+    background:
+        var(--green);
+
+}
+
+
+.card.yellow
+.card-status-line {
+
+    background:
+        var(--yellow);
+
+}
+
+
+.card.red
+.card-status-line {
+
+    background:
+        var(--red);
+
+}
+
+
+/* =========================================================
+   KART ÜST
+========================================================= */
+
+.card-top {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap: 13px;
+
+}
+
+
+.icon {
+
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        17px;
+
+    background:
+        rgba(
+            var(--accent-rgb),
+            .10
+        );
+
+    font-size: 25px;
+
+    transition:
+        var(--transition);
+
+}
+
+
+.card:hover .icon {
+
+    transform:
+        scale(1.04);
+
+}
+
+
+.title {
+
+    font-size: 16px;
+
+    font-weight: 750;
+
+}
+
+
+.last-date {
+
+    margin-top: 5px;
+
+    font-size: 11px;
+
+    color:
+        var(--muted);
+
+}
+
+
+/* =========================================================
+   GERİ SAYIM
+========================================================= */
+
+.countdown {
+
+    margin-top: 17px;
+
+    padding:
+        17px 10px;
+
+    border-radius:
+        18px;
+
+    text-align:
+        center;
+
+    transition:
+        var(--transition);
+
+}
+
+
+.card.green .countdown {
+
+    background:
+        var(--green-bg);
+
+}
+
+
+.card.yellow .countdown {
+
+    background:
+        var(--yellow-bg);
+
+}
+
+
+.card.red .countdown {
+
+    background:
+        var(--red-bg);
+
+}
+
+
+.count-number {
+
+    font-size: 31px;
+
+    line-height: 1;
+
+    font-weight: 850;
+
+    letter-spacing:
+        -1px;
+
+    animation:
+        numberIn .35s ease;
+
+}
+
+
+@keyframes numberIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.92);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+.count-text {
+
+    margin-top: 6px;
+
+    font-size: 10px;
+
+    font-weight: 750;
+
+    letter-spacing:
+        .5px;
+
+    opacity:
+        .72;
+
+}
+
+
+/* =========================================================
+   DETAYLAR
+========================================================= */
+
+.details {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 8px;
+
+    margin-top:
+        10px;
+
+}
+
+
+.detail {
+
+    background:
+        var(--bg);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        14px;
+
+    padding:
+        10px;
+
+}
+
+
+.detail-label {
+
+    font-size: 9px;
+
+    color:
+        var(--muted);
+
+}
+
+
+.detail-value {
+
+    margin-top: 4px;
+
+    font-size: 11px;
+
+    font-weight: 650;
+
+}
+
+
+/* =========================================================
+   DURUM YAZISI
+========================================================= */
+
+.status {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap: 6px;
+
+    margin-top:
+        13px;
+
+    font-size:
+        11px;
+
+    font-weight:
+        750;
+
+}
+
+
+.status.green {
+
+    color:
+        var(--green);
+
+}
+
+
+.status.yellow {
+
+    color:
+        var(--yellow);
+
+}
+
+
+.status.red {
+
+    color:
+        var(--red);
+
+}
+
+
+/* =========================================================
+   BUTONLAR
+========================================================= */
+
+.buttons {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 45px 45px;
+
+    gap:
+        8px;
+
+    margin-top:
+        14px;
+
+}
+
+
+.done {
+
+    height: 44px;
+
+    border-radius:
+        14px;
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+    font-size:
+        12px;
+
+    font-weight:
+        750;
+
+    box-shadow:
+        0 7px 18px
+        rgba(
+            var(--accent-rgb),
+            .18
+        );
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease;
+
+}
+
+
+.done:hover {
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 10px 23px
+        rgba(
+            var(--accent-rgb),
+            .25
+        );
+
+}
+
+
+.done:active {
+
+    transform:
+        scale(.96);
+
+}
+
+
+.edit,
+.delete {
+
+    height: 44px;
+
+    border-radius:
+        14px;
+
+    background:
+        var(--bg);
+
+    border:
+        1px solid
+        var(--border);
+
+    color:
+        var(--text);
+
+    font-size:
+        16px;
+
+    transition:
+        transform .18s ease,
+        background .25s ease;
+
+}
+
+
+.edit:active,
+.delete:active {
+
+    transform:
+        scale(.90);
+
+}
+
+
+.delete {
+
+    color:
+        var(--red);
+
+}
+
+
+/* =========================================================
+   EKLE BUTONU
+========================================================= */
+
+.add {
+
+    position: fixed;
+
+    z-index: 10;
+
+    bottom: 20px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width:
+        calc(100% - 40px);
+
+    max-width:
+        610px;
+
+    height:
+        55px;
+
+    border-radius:
+        18px;
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+    font-size:
+        13px;
+
+    font-weight:
+        750;
+
+    box-shadow:
+        0 12px 30px
+        rgba(
+            var(--accent-rgb),
+            .30
+        );
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+
+}
+
+
+.add:hover {
+
+    box-shadow:
+        0 15px 35px
+        rgba(
+            var(--accent-rgb),
+            .38
+        );
+
+}
+
+
+.add:active {
+
+    transform:
+        translateX(-50%)
+        scale(.96);
+
+}
+
+
+/* =========================================================
+   MODAL ARKA PLAN
+========================================================= */
+
+.modal-bg {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 50;
+
+    background:
+        rgba(0,0,0,.52);
+
+    backdrop-filter:
+        blur(7px);
+
+    display:
+        none;
+
+    align-items:
+        flex-end;
+
+    justify-content:
+        center;
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+
+    width: 100%;
+
+    max-width:
+        650px;
+
+    background:
+        var(--card);
+
+    border-radius:
+        28px 28px 0 0;
+
+    padding:
+        23px 20px 30px;
+
+    border:
+        1px solid
+        var(--border);
+
+    box-shadow:
+        0 -15px 50px
+        rgba(0,0,0,.18);
+
+    backdrop-filter:
+        blur(22px);
+
+    animation:
+        modalIn .32s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+@keyframes modalIn {
+
+    from {
+
+        transform:
+            translateY(100%);
+
+        opacity: .7;
+
+    }
+
+    to {
+
+        transform:
+            translateY(0);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+.modal-head {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    margin-bottom:
+        18px;
+
+}
+
+
+.modal h2 {
+
+    margin: 0;
+
+    font-size:
+        20px;
+
+    font-weight:
+        800;
+
+}
+
+
+.close {
+
+    width: 38px;
+    height: 38px;
+
+    border-radius:
+        13px;
+
+    background:
+        var(--bg);
+
+    color:
+        var(--text);
+
+    font-size:
+        16px;
+
+    transition:
+        transform .18s ease;
+
+}
+
+
+.close:active {
+
+    transform:
+        scale(.88)
+        rotate(8deg);
+
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-label {
+
+    display:
+        block;
+
+    margin:
+        13px 0 7px;
+
+    font-size:
+        11px;
+
+    font-weight:
+        650;
+
+    color:
+        var(--muted);
+
+}
+
+
+.modal input {
+
+    width: 100%;
+
+    height: 50px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        14px;
+
+    background:
+        var(--input);
+
+    color:
+        var(--text);
+
+    padding:
+        0 14px;
+
+    outline:
+        none;
+
+    font-size:
+        14px;
+
+    transition:
+        border .2s,
+        box-shadow .2s;
+
+}
+
+
+.modal input:focus {
+
+    border-color:
+        rgba(
+            var(--accent-rgb),
+            .5
+        );
+
+    box-shadow:
+        0 0 0 4px
+        rgba(
+            var(--accent-rgb),
+            .07
+        );
+
+}
+
+
+.row {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        10px;
+
+}
+
+
+/* =========================================================
+   MODAL BUTONLARI
+========================================================= */
+
+.save {
+
+    width: 100%;
+
+    height: 50px;
+
+    margin-top:
+        20px;
+
+    border-radius:
+        14px;
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+    font-size:
+        13px;
+
+    font-weight:
+        750;
+
+    box-shadow:
+        0 8px 20px
+        rgba(
+            var(--accent-rgb),
+            .22
+        );
+
+    transition:
+        transform .18s ease;
+
+}
+
+
+.save:active {
+
+    transform:
+        scale(.97);
+
+}
+
+
+.cancel {
+
+    width: 100%;
+
+    height: 45px;
+
+    margin-top:
+        8px;
+
+    border-radius:
+        14px;
+
+    background:
+        var(--bg);
+
+    color:
+        var(--text);
+
+    font-size:
+        12px;
+
+}
+
+
+/* =========================================================
+   BOŞ DURUM
+========================================================= */
+
+.empty {
+
+    text-align:
+        center;
+
+    padding:
+        55px 20px;
+
+    color:
+        var(--muted);
+
+    animation:
+        fadeUp .4s ease;
+
+}
+
+
+.empty-icon {
+
+    width: 75px;
+    height: 75px;
+
+    margin:
+        0 auto 15px;
+
+    border-radius:
+        25px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        36px;
+
+    background:
+        rgba(
+            var(--accent-rgb),
+            .09
+        );
+
+}
+
+
+.empty h3 {
+
+    margin:
+        0 0 7px;
+
+    color:
+        var(--text);
+
+    font-size:
+        16px;
+
+}
+
+
+.empty p {
+
+    margin:
+        0;
+
+    font-size:
+        12px;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* =========================================================
+   TEMA PANELİ
+========================================================= */
+
+.theme-panel {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 60;
+
+    background:
+        rgba(0,0,0,.52);
+
+    backdrop-filter:
+        blur(7px);
+
+    display:
+        none;
+
+    align-items:
+        flex-end;
+
+    justify-content:
+        center;
+
+}
+
+
+.theme-content {
+
+    width: 100%;
+
+    max-width:
+        650px;
+
+    background:
+        var(--card);
+
+    border-radius:
+        28px 28px 0 0;
+
+    padding:
+        25px 20px 30px;
+
+    border:
+        1px solid
+        var(--border);
+
+    backdrop-filter:
+        blur(22px);
+
+    animation:
+        modalIn .32s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+.theme-content h2 {
+
+    margin:
+        0 0 18px;
+
+    font-size:
+        19px;
+
+}
+
+
+/* =========================================================
+   RENKLER
+========================================================= */
+
+.theme-options {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:
+        11px;
+
+}
+
+
+.color {
+
+    height:
+        50px;
+
+    border-radius:
+        15px;
+
+    border:
+        3px solid
+        transparent;
+
+    transition:
+        transform .2s ease,
+        border .2s ease;
+
+}
+
+
+.color:active {
+
+    transform:
+        scale(.90);
+
+}
+
+
+.color.active {
+
+    border-color:
+        var(--text);
+
+    transform:
+        scale(.94);
+
+}
+
+
+/* =========================================================
+   ANİMASYON
+========================================================= */
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(9px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   MASAÜSTÜ
+========================================================= */
+
+@media (min-width: 700px) {
+
+    body {
+
+        background:
+            #e9ebf1;
+
+    }
+
+    body.dark {
+
+        background:
+            #090a0d;
+
+    }
+
+    .app {
+
+        background:
+            var(--bg);
+
+        min-height:
+            100vh;
+
+        box-shadow:
+            0 0 60px
+            rgba(0,0,0,.05);
+
+    }
+
+}
+
+
+/* =========================================================
+   HAREKET AZALTMA
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
+
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="header-row">
+
+            <div class="logo-area">
+
+                <div class="logo">
+                    🧠
+                </div>
+
+                <div>
+
+                    <h1>
+                        Son Ne Zaman?
+                    </h1>
+
+                    <p>
+                        Geçmişini unutma.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="theme-btn"
+                id="themeButton"
+                onclick="openTheme()">
+
+                🌙
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         ARAMA
+    ====================================================== -->
+
+    <div class="search">
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+            <input
+                id="search"
+                type="text"
+                placeholder="Bir şey ara..."
+                oninput="render()">
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         İSTATİSTİKLER
+    ====================================================== -->
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="total">
+
+                0
+
+            </div>
+
+            <div class="stat-label">
+                Toplam
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="today">
+
+                0
+
+            </div>
+
+            <div class="stat-label">
+                Bugün
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="late">
+
+                0
+
+            </div>
+
+            <div class="stat-label">
+                Geciken
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         BAŞLIK
+    ====================================================== -->
+
+    <div class="section-title">
+
+        <h2>
+            Takip ettiklerin
+        </h2>
+
+        <span id="itemCount">
+            0 kayıt
+        </span>
+
+    </div>
+
+
+    <!-- =====================================================
+         LİSTE
+    ====================================================== -->
+
+    <div
+        class="list"
+        id="list">
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================================================
+     EKLE BUTONU
+========================================================= -->
+
+<button
+    class="add"
+    onclick="openAdd()">
+
+    ＋ Yeni takip ekle
+
+</button>
+
+
+<!-- =========================================================
+     EKLE / DÜZENLE MODALI
+========================================================= -->
+
+<div
+    class="modal-bg"
+    id="modalBg">
+
+    <div class="modal">
+
+        <div class="modal-head">
+
+            <h2 id="modalTitle">
+                Yeni takip
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeModal()">
+
+                ✕
+
+            </button>
+
+        </div>
+
+
+        <label class="form-label">
+            Ne yaptın?
+        </label>
+
+        <input
+            id="name"
+            type="text"
+            placeholder="Örn: Tıraş oldum">
+
+
+        <div class="row">
+
+            <div>
+
+                <label class="form-label">
+                    Emoji
+                </label>
+
+                <input
+                    id="emoji"
+                    type="text"
+                    maxlength="2"
+                    value="🧠"
+                    placeholder="🪒">
+
+            </div>
+
+
+            <div>
+
+                <label class="form-label">
+                    Döngü (gün)
+                </label>
+
+                <input
+                    id="cycle"
+                    type="number"
+                    min="1"
+                    placeholder="7">
+
+            </div>
+
+        </div>
+
+
+        <label class="form-label">
+            Son yaptığın tarih
+        </label>
+
+        <input
+            id="date"
+            type="date">
+
+
+        <button
+            class="save"
+            onclick="saveItem()">
+
+            Kaydet
+
+        </button>
+
+
+        <button
+            class="cancel"
+            onclick="closeModal()">
+
+            Vazgeç
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TEMA PANELİ
+========================================================= -->
+
+<div
+    class="theme-panel"
+    id="themePanel">
+
+    <div class="theme-content">
+
+        <h2>
+            Görünüm
+        </h2>
+
+
+        <button
+            class="cancel"
+            onclick="toggleDark()"
+            id="darkToggle">
+
+            🌙 Koyu / Açık Tema
+
+        </button>
+
+
+        <h2
+            style="margin-top:24px">
+
+            Tema rengi
+
+        </h2>
+
+
+        <div class="theme-options">
+
+            <button
+                class="color"
+                data-color="#6c63ff"
+                style="background:#6c63ff"
+                onclick="setAccent('#6c63ff')">
+            </button>
+
+
+            <button
+                class="color"
+                data-color="#2563eb"
+                style="background:#2563eb"
+                onclick="setAccent('#2563eb')">
+            </button>
+
+
+            <button
+                class="color"
+                data-color="#10b981"
+                style="background:#10b981"
+                onclick="setAccent('#10b981')">
+            </button>
+
+
+            <button
+                class="color"
+                data-color="#ec4899"
+                style="background:#ec4899"
+                onclick="setAccent('#ec4899')">
+            </button>
+
+
+            <button
+                class="color"
+                data-color="#f97316"
+                style="background:#f97316"
+                onclick="setAccent('#f97316')">
+            </button>
+
+
+            <button
+                class="color"
+                data-color="#ef4444"
+                style="background:#ef4444"
+                onclick="setAccent('#ef4444')">
+            </button>
+
+
+            <button
+                class="color"
+                data-color="#8b5cf6"
+                style="background:#8b5cf6"
+                onclick="setAccent('#8b5cf6')">
+            </button>
+
+
+            <button
+                class="color"
+                data-color="#14b8a6"
+                style="background:#14b8a6"
+                onclick="setAccent('#14b8a6')">
+            </button>
+
+        </div>
+
+
+        <button
+            class="cancel"
+            style="margin-top:20px"
+            onclick="closeTheme()">
+
+            Kapat
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+const STORAGE_KEY =
+    "son_ne_zaman_v3";
+
+const SETTINGS_KEY =
+    "son_ne_zaman_settings_v3";
+
+
+let items =
+    JSON.parse(
+        localStorage.getItem(
+            STORAGE_KEY
+        ) || "[]"
+    );
+
+
+let settings =
+    JSON.parse(
+        localStorage.getItem(
+            SETTINGS_KEY
+        ) || "{}"
+    );
+
+
+let editingId = null;
+
+
+/* =========================================================
+   AYARLARI KAYDET
+========================================================= */
+
+function saveSettings() {
+
+    localStorage.setItem(
+        SETTINGS_KEY,
+        JSON.stringify(settings)
+    );
+
+}
+
+
+/* =========================================================
+   VERİLERİ KAYDET
+========================================================= */
+
+function saveData() {
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(items)
+    );
+
+}
+
+
+/* =========================================================
+   BUGÜN
+========================================================= */
+
+function todayString() {
+
+    const d =
+        new Date();
+
+    const y =
+        d.getFullYear();
+
+    const m =
+        String(
+            d.getMonth() + 1
+        ).padStart(2,"0");
+
+    const day =
+        String(
+            d.getDate()
+        ).padStart(2,"0");
+
+    return `${y}-${m}-${day}`;
+
+}
+
+
+/* =========================================================
+   TARİHİ DATE'E ÇEVİR
+========================================================= */
+
+function dateToDate(value) {
+
+    const parts =
+        value.split("-")
+        .map(Number);
+
+    return new Date(
+        parts[0],
+        parts[1] - 1,
+        parts[2]
+    );
+
+}
+
+
+/* =========================================================
+   İKİ TARİH ARASI GÜN
+========================================================= */
+
+function daysBetween(
+    date1,
+    date2
+) {
+
+    const a =
+        dateToDate(date1);
+
+    const b =
+        dateToDate(date2);
+
+    return Math.round(
+        (b - a) / 86400000
+    );
+
+}
+
+
+/* =========================================================
+   TARİHE GÜN EKLE
+========================================================= */
+
+function addDays(
+    dateString,
+    days
+) {
+
+    const d =
+        dateToDate(dateString);
+
+    d.setDate(
+        d.getDate() +
+        Number(days)
+    );
+
+
+    const y =
+        d.getFullYear();
+
+    const m =
+        String(
+            d.getMonth() + 1
+        ).padStart(2,"0");
+
+    const day =
+        String(
+            d.getDate()
+        ).padStart(2,"0");
+
+
+    return `${y}-${m}-${day}`;
+
+}
+
+
+/* =========================================================
+   TARİHİ GÜZEL YAZ
+========================================================= */
+
+function formatDate(
+    dateString
+) {
+
+    const d =
+        dateToDate(dateString);
+
+    return d.toLocaleDateString(
+        "tr-TR",
+        {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SONRAKİ TARİH
+========================================================= */
+
+function getNextDate(item) {
+
+    return addDays(
+        item.lastDate,
+        item.cycle
+    );
+
+}
+
+
+/* =========================================================
+   GERİ SAYIM
+========================================================= */
+
+function getCountdown(item) {
+
+    const next =
+        getNextDate(item);
+
+    const today =
+        todayString();
+
+    const remaining =
+        daysBetween(
+            today,
+            next
+        );
+
+
+    return {
+        next,
+        remaining
+    };
+
+}
+
+
+/* =========================================================
+   DURUM
+========================================================= */
+
+function getStatus(item) {
+
+    const data =
+        getCountdown(item);
+
+    const remaining =
+        data.remaining;
+
+    const cycle =
+        Number(item.cycle);
+
+
+    /*
+       Döngünün son %30'luk kısmı
+       sarı olsun.
+    */
+
+    const warningLimit =
+        Math.max(
+            1,
+            Math.ceil(
+                cycle * .30
+            )
+        );
+
+
+    if (remaining < 0) {
+
+        return {
+            type: "red",
+            text: "Gecikti"
+        };
+
+    }
+
+
+    if (remaining === 0) {
+
+        return {
+            type: "red",
+            text: "Bugün"
+        };
+
+    }
+
+
+    if (
+        remaining <=
+        warningLimit
+    ) {
+
+        return {
+            type: "yellow",
+            text: "Yaklaşıyor"
+        };
+
+    }
+
+
+    return {
+        type: "green",
+        text: "Zaman var"
+    };
+
+}
+
+
+/* =========================================================
+   GERİ SAYIM YAZISI
+========================================================= */
+
+function countdownText(item) {
+
+    const data =
+        getCountdown(item);
+
+    const days =
+        data.remaining;
+
+
+    if (days < 0) {
+
+        const late =
+            Math.abs(days);
+
+        return {
+            number: late,
+            text: "GÜN GECİKTİ"
+        };
+
+    }
+
+
+    if (days === 0) {
+
+        return {
+            number: "0",
+            text: "BUGÜN"
+        };
+
+    }
+
+
+    return {
+
+        number: days,
+
+        text:
+            days === 1
+                ? "GÜN KALDI"
+                : "GÜN KALDI"
+
+    };
+
+}
+
+
+/* =========================================================
+   HTML GÜVENLİĞİ
+========================================================= */
+
+function escapeHtml(text) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+    div.textContent =
+        text;
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function render() {
+
+    const list =
+        document.getElementById(
+            "list"
+        );
+
+
+    const search =
+        document.getElementById(
+            "search"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    let filtered =
+        items.filter(
+            item =>
+                item.name
+                .toLowerCase()
+                .includes(search)
+        );
+
+
+    /* İSTATİSTİKLER */
+
+    document.getElementById(
+        "total"
+    ).textContent =
+        items.length;
+
+
+    document.getElementById(
+        "today"
+    ).textContent =
+        items.filter(
+            item =>
+                item.lastDate ===
+                todayString()
+        ).length;
+
+
+    document.getElementById(
+        "late"
+    ).textContent =
+        items.filter(
+            item =>
+                getStatus(item)
+                .type === "red"
+        ).length;
+
+
+    document.getElementById(
+        "itemCount"
+    ).textContent =
+        `${filtered.length} kayıt`;
+
+
+    /* ÖNCE KIRMIZI,
+       SONRA SARI,
+       SONRA YEŞİL */
+
+    const priority = {
+
+        red: 3,
+
+        yellow: 2,
+
+        green: 1
+
+    };
+
+
+    filtered.sort(
+        (a,b) => {
+
+            const sa =
+                getStatus(a);
+
+            const sb =
+                getStatus(b);
+
+
+            if (
+                priority[sb.type] !==
+                priority[sa.type]
+            ) {
+
+                return
+                    priority[sb.type] -
+                    priority[sa.type];
+
+            }
+
+
+            return
+                getCountdown(a)
+                .remaining -
+
+                getCountdown(b)
+                .remaining;
+
+        }
+    );
+
+
+    /* BOŞ */
+
+    if (
+        filtered.length === 0
+    ) {
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🧠
+                </div>
+
+                <h3>
+                    Henüz takip yok
+                </h3>
+
+                <p>
+                    Ne zaman yaptığını
+                    hatırlamak istediğin
+                    bir şey ekle.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* KARTLAR */
+
+    list.innerHTML =
+        filtered
+        .map(
+            (item,index) => {
+
+                const status =
+                    getStatus(item);
+
+                const count =
+                    countdownText(item);
+
+                const next =
+                    getNextDate(item);
+
+
+                return `
+
+                <div
+                    class="card ${status.type}"
+                    style="
+                        animation-delay:
+                        ${Math.min(index * 0.045,.25)}s
+                    ">
+
+                    <div
+                        class="card-status-line">
+                    </div>
+
+
+                    <div class="card-top">
+
+                        <div class="icon">
+
+                            ${escapeHtml(
+                                item.emoji
+                            )}
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="title">
+
+                                ${escapeHtml(
+                                    item.name
+                                )}
+
+                            </div>
+
+
+                            <div
+                                class="last-date">
+
+                                Son yaptığın:
+                                ${formatDate(
+                                    item.lastDate
+                                )}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="countdown">
+
+                        <div
+                            class="count-number">
+
+                            ${count.number}
+
+                        </div>
+
+
+                        <div
+                            class="count-text">
+
+                            ${count.text}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="details">
+
+                        <div class="detail">
+
+                            <div
+                                class="detail-label">
+
+                                Döngü
+
+                            </div>
+
+                            <div
+                                class="detail-value">
+
+                                ${item.cycle}
+                                günde bir
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <div
+                                class="detail-label">
+
+                                Sonraki
+
+                            </div>
+
+                            <div
+                                class="detail-value">
+
+                                ${formatDate(
+                                    next
+                                )}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="status ${status.type}">
+
+                        ●
+
+                        ${status.text}
+
+                    </div>
+
+
+                    <div class="buttons">
+
+                        <button
+                            class="done"
+                            onclick="
+                                markDone(
+                                    '${item.id}'
+                                )
+                            ">
+
+                            ✓ Bugün yaptım
+
+                        </button>
+
+
+                        <button
+                            class="edit"
+                            onclick="
+                                editItem(
+                                    '${item.id}'
+                                )
+                            ">
+
+                            ✏️
+
+                        </button>
+
+
+                        <button
+                            class="delete"
+                            onclick="
+                                deleteItem(
+                                    '${item.id}'
+                                )
+                            ">
+
+                            🗑️
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =========================================================
+   YENİ EKLE
+========================================================= */
+
+function openAdd() {
+
+    editingId = null;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Yeni takip";
+
+
+    document.getElementById(
+        "name"
+    ).value = "";
+
+
+    document.getElementById(
+        "emoji"
+    ).value = "🧠";
+
+
+    document.getElementById(
+        "cycle"
+    ).value = "7";
+
+
+    document.getElementById(
+        "date"
+    ).value =
+        todayString();
+
+
+    document.getElementById(
+        "modalBg"
+    ).style.display =
+        "flex";
+
+}
+
+
+/* =========================================================
+   DÜZENLE
+========================================================= */
+
+function editItem(id) {
+
+    const item =
+        items.find(
+            x => x.id === id
+        );
+
+
+    if (!item) return;
+
+
+    editingId = id;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Takibi düzenle";
+
+
+    document.getElementById(
+        "name"
+    ).value =
+        item.name;
+
+
+    document.getElementById(
+        "emoji"
+    ).value =
+        item.emoji;
+
+
+    document.getElementById(
+        "cycle"
+    ).value =
+        item.cycle;
+
+
+    document.getElementById(
+        "date"
+    ).value =
+        item.lastDate;
+
+
+    document.getElementById(
+        "modalBg"
+    ).style.display =
+        "flex";
+
+}
+
+
+/* =========================================================
+   KAYDET
+========================================================= */
+
+function saveItem() {
+
+    const name =
+        document.getElementById(
+            "name"
+        ).value.trim();
+
+
+    const emoji =
+        document.getElementById(
+            "emoji"
+        ).value.trim() ||
+        "🧠";
+
+
+    const cycle =
+        Number(
+            document.getElementById(
+                "cycle"
+            ).value
+        );
+
+
+    const date =
+        document.getElementById(
+            "date"
+        ).value;
+
+
+    if (!name) {
+
+        alert(
+            "Bir isim gir."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !cycle ||
+        cycle < 1
+    ) {
+
+        alert(
+            "Döngü en az 1 gün olmalı."
+        );
+
+        return;
+
+    }
+
+
+    if (!date) {
+
+        alert(
+            "Tarih seç."
+        );
+
+        return;
+
+    }
+
+
+    if (editingId) {
+
+        const item =
+            items.find(
+                x =>
+                    x.id ===
+                    editingId
+            );
+
+
+        if (!item) return;
+
+
+        item.name =
+            name;
+
+        item.emoji =
+            emoji;
+
+        item.cycle =
+            cycle;
+
+        item.lastDate =
+            date;
+
+
+    } else {
+
+        items.push({
+
+            id:
+                Date.now()
+                .toString(),
+
+            name:
+                name,
+
+            emoji:
+                emoji,
+
+            cycle:
+                cycle,
+
+            lastDate:
+                date,
+
+            history:
+                [date]
+
+        });
+
+    }
+
+
+    saveData();
+
+    closeModal();
+
+    render();
+
+}
+
+
+/* =========================================================
+   BUGÜN YAPTIM
+========================================================= */
+
+function markDone(id) {
+
+    const item =
+        items.find(
+            x =>
+                x.id === id
+        );
+
+
+    if (!item) return;
+
+
+    const today =
+        todayString();
+
+
+    if (!item.history) {
+
+        item.history = [];
+
+    }
+
+
+    if (
+        item.lastDate !==
+        today
+    ) {
+
+        item.lastDate =
+            today;
+
+
+        item.history.push(
+            today
+        );
+
+    }
+
+
+    saveData();
+
+    render();
+
+}
+
+
+/* =========================================================
+   SİL
+========================================================= */
+
+function deleteItem(id) {
+
+    const item =
+        items.find(
+            x =>
+                x.id === id
+        );
+
+
+    if (!item) return;
+
+
+    if (
+        confirm(
+            `"${item.name}" silinsin mi?`
+        )
+    ) {
+
+        items =
+            items.filter(
+                x =>
+                    x.id !== id
+            );
+
+
+        saveData();
+
+        render();
+
+    }
+
+}
+
+
+/* =========================================================
+   MODAL KAPAT
+========================================================= */
+
+function closeModal() {
+
+    document.getElementById(
+        "modalBg"
+    ).style.display =
+        "none";
+
+}
+
+
+/* =========================================================
+   TEMA PANELİ
+========================================================= */
+
+function openTheme() {
+
+    document.getElementById(
+        "themePanel"
+    ).style.display =
+        "flex";
+
+
+    updateColorButtons();
+
+}
+
+
+function closeTheme() {
+
+    document.getElementById(
+        "themePanel"
+    ).style.display =
+        "none";
+
+}
+
+
+/* =========================================================
+   KOYU TEMA
+========================================================= */
+
+function toggleDark() {
+
+    settings.dark =
+        !document.body
+        .classList
+        .contains("dark");
+
+
+    applySettings();
+
+    saveSettings();
+
+}
+
+
+/* =========================================================
+   RENK
+========================================================= */
+
+function setAccent(color) {
+
+    settings.accent =
+        color;
+
+
+    applySettings();
+
+    saveSettings();
+
+    updateColorButtons();
+
+}
+
+
+/* =========================================================
+   AYARLARI UYGULA
+========================================================= */
+
+function applySettings() {
+
+    if (settings.dark) {
+
+        document.body
+            .classList
+            .add("dark");
+
+        document.getElementById(
+            "themeButton"
+        ).textContent =
+            "☀️";
+
+    } else {
+
+        document.body
+            .classList
+            .remove("dark");
+
+        document.getElementById(
+            "themeButton"
+        ).textContent =
+            "🌙";
+
+    }
+
+
+    const accent =
+        settings.accent ||
+        "#6c63ff";
+
+
+    document.documentElement
+        .style
+        .setProperty(
+            "--accent",
+            accent
+        );
+
+
+    const rgb =
+        hexToRgb(accent);
+
+
+    document.documentElement
+        .style
+        .setProperty(
+            "--accent-rgb",
+            `${rgb.r},${rgb.g},${rgb.b}`
+        );
+
+
+    document
+        .querySelector(
+            'meta[name="theme-color"]'
+        )
+        .setAttribute(
+            "content",
+            accent
+        );
+
+}
+
+
+/* =========================================================
+   HEX → RGB
+========================================================= */
+
+function hexToRgb(hex) {
+
+    hex =
+        hex.replace("#","");
+
+
+    return {
+
+        r:
+            parseInt(
+                hex.substring(0,2),
+                16
+            ),
+
+        g:
+            parseInt(
+                hex.substring(2,4),
+                16
+            ),
+
+        b:
+            parseInt(
+                hex.substring(4,6),
+                16
+            )
+
+    };
+
+}
+
+
+/* =========================================================
+   AKTİF RENK
+========================================================= */
+
+function updateColorButtons() {
+
+    const current =
+        settings.accent ||
+        "#6c63ff";
+
+
+    document
+        .querySelectorAll(
+            ".color"
+        )
+        .forEach(
+            button => {
+
+                if (
+                    button.dataset.color
+                    ===
+                    current
+                ) {
+
+                    button.classList
+                        .add("active");
+
+                } else {
+
+                    button.classList
+                        .remove("active");
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   DIŞARI TIKLAYINCA KAPAT
+========================================================= */
+
+document
+    .getElementById("modalBg")
+    .addEventListener(
+        "click",
+        function(e) {
+
+            if (
+                e.target === this
+            ) {
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById("themePanel")
+    .addEventListener(
+        "click",
+        function(e) {
+
+            if (
+                e.target === this
+            ) {
+
+                closeTheme();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   TARİH DEĞİŞTİKÇE SAYFAYI YENİLE
+========================================================= */
+
+setInterval(
+    () => {
+
+        render();
+
+    },
+    60000
+);
+
+
+/* =========================================================
+   BAŞLAT
+========================================================= */
+
+applySettings();
+
+updateColorButtons();
+
+render();
+
+</script>
+
+</body>
+</html>
