@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Son Ne Zaman?</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f6fa;
+    color: #17181c;
+}
+
+.app {
+    max-width: 600px;
+    margin: auto;
+    min-height: 100vh;
+    padding-bottom: 100px;
+}
+
+.header {
+    padding: 25px 20px 15px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.header p {
+    margin: 7px 0 0;
+    color: #777;
+}
+
+.search {
+    margin: 10px 20px 20px;
+}
+
+.search input {
+    width: 100%;
+    padding: 15px 17px;
+    border: none;
+    border-radius: 16px;
+    background: white;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 3px 15px rgba(0,0,0,.05);
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+    padding: 0 20px 20px;
+}
+
+.stat {
+    background: white;
+    border-radius: 18px;
+    padding: 15px 10px;
+    text-align: center;
+    box-shadow: 0 3px 15px rgba(0,0,0,.04);
+}
+
+.stat b {
+    display: block;
+    font-size: 22px;
+}
+
+.stat span {
+    color: #777;
+    font-size: 12px;
+}
+
+.list {
+    padding: 0 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 17px;
+    margin-bottom: 13px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.05);
+    position: relative;
+}
+
+.card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 15px;
+    background: #f0f1f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.title {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.last {
+    font-size: 13px;
+    color: #777;
+    margin-top: 4px;
+}
+
+.info {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.days {
+    font-size: 13px;
+    color: #666;
+}
+
+.badge {
+    font-size: 12px;
+    padding: 7px 10px;
+    border-radius: 20px;
+    background: #eef1f5;
+}
+
+.badge.warning {
+    background: #fff1d6;
+    color: #9a6200;
+}
+
+.badge.danger {
+    background: #ffe1e1;
+    color: #a40000;
+}
+
+.badge.good {
+    background: #dff8e7;
+    color: #08752b;
+}
+
+.buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+.done {
+    flex: 1;
+    padding: 12px;
+    border-radius: 13px;
+    background: #17181c;
+    color: white;
+    font-size: 14px;
+}
+
+.edit,
+.delete {
+    width: 43px;
+    border-radius: 13px;
+    background: #f0f1f5;
+    font-size: 17px;
+}
+
+.add {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 560px;
+    padding: 17px;
+    border-radius: 18px;
+    background: #17181c;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 8px 25px rgba(0,0,0,.2);
+}
+
+.empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #777;
+}
+
+.modal-bg {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.5);
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 10;
+}
+
+.modal {
+    background: white;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 25px 25px 0 0;
+    padding: 25px 20px 30px;
+}
+
+.modal h2 {
+    margin-top: 0;
+}
+
+.modal input,
+.modal select {
+    width: 100%;
+    padding: 14px;
+    margin: 7px 0 14px;
+    border: 1px solid #ddd;
+    border-radius: 13px;
+    font-size: 16px;
+    outline: none;
+    background: white;
+}
+
+.save {
+    width: 100%;
+    padding: 15px;
+    border-radius: 14px;
+    background: #17181c;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.cancel {
+    width: 100%;
+    padding: 13px;
+    margin-top: 8px;
+    border-radius: 14px;
+    background: #eee;
+    font-size: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <div class="header">
+        <h1>🧠 Son Ne Zaman?</h1>
+        <p>Geçmişini hatırla.</p>
+    </div>
+
+    <div class="search">
+        <input
+            type="text"
+            id="search"
+            placeholder="Bir şey ara..."
+            oninput="render()"
+        >
+    </div>
+
+    <div class="stats">
+        <div class="stat">
+            <b id="total">0</b>
+            <span>Toplam</span>
+        </div>
+
+        <div class="stat">
+            <b id="today">0</b>
+            <span>Bugün</span>
+        </div>
+
+        <div class="stat">
+            <b id="late">0</b>
+            <span>Geciken</span>
+        </div>
+    </div>
+
+    <div class="list" id="list"></div>
+
+</div>
+
+<button class="add" onclick="openAdd()">
+    ＋ Yeni şey ekle
+</button>
+
+<div class="modal-bg" id="modalBg">
+
+    <div class="modal">
+
+        <h2 id="modalTitle">Yeni şey</h2>
+
+        <label>Ne yaptın?</label>
+
+        <input
+            id="name"
+            placeholder="Örn: Odamı temizledim"
+        >
+
+        <label>Emoji</label>
+
+        <input
+            id="emoji"
+            maxlength="2"
+            value="🧠"
+            placeholder="🧹"
+        >
+
+        <label>Son yaptığın tarih</label>
+
+        <input
+            type="date"
+            id="date"
+        >
+
+        <button class="save" onclick="saveItem()">
+            Kaydet
+        </button>
+
+        <button class="cancel" onclick="closeModal()">
+            Vazgeç
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+const STORAGE_KEY = "son_ne_zaman_v1";
+
+let items = JSON.parse(
+    localStorage.getItem(STORAGE_KEY) || "[]"
+);
+
+let editingId = null;
+
+
+/* -------------------------
+   KAYDET
+------------------------- */
+
+function saveData() {
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(items)
+    );
+}
+
+
+/* -------------------------
+   TARİH
+------------------------- */
+
+function todayString() {
+
+    const d = new Date();
+
+    const y = d.getFullYear();
+
+    const m = String(
+        d.getMonth() + 1
+    ).padStart(2, "0");
+
+    const day = String(
+        d.getDate()
+    ).padStart(2, "0");
+
+    return `${y}-${m}-${day}`;
+}
+
+
+function daysBetween(date1, date2) {
+
+    const a = new Date(date1);
+    const b = new Date(date2);
+
+    a.setHours(0,0,0,0);
+    b.setHours(0,0,0,0);
+
+    return Math.round(
+        Math.abs(b - a) / 86400000
+    );
+}
+
+
+/* -------------------------
+   ORTALAMA
+------------------------- */
+
+function calculateAverage(item) {
+
+    if (!item.history || item.history.length < 2) {
+        return null;
+    }
+
+    const dates = [...item.history]
+        .sort()
+        .map(x => new Date(x));
+
+    let total = 0;
+
+    for (let i = 1; i < dates.length; i++) {
+
+        total += Math.round(
+            (dates[i] - dates[i-1]) /
+            86400000
+        );
+
+    }
+
+    return Math.round(
+        total / (dates.length - 1)
+    );
+}
+
+
+/* -------------------------
+   DURUM
+------------------------- */
+
+function getStatus(item) {
+
+    const avg = calculateAverage(item);
+
+    if (!avg) {
+
+        return {
+            text: "Yeni",
+            class: ""
+        };
+
+    }
+
+    const days = daysBetween(
+        item.lastDate,
+        todayString()
+    );
+
+    if (days > avg + 3) {
+
+        return {
+            text: "Gecikti",
+            class: "danger"
+        };
+
+    }
+
+    if (days >= avg) {
+
+        return {
+            text: "Yaklaştı",
+            class: "warning"
+        };
+
+    }
+
+    return {
+        text: "Normal",
+        class: "good"
+    };
+}
+
+
+/* -------------------------
+   RENDER
+------------------------- */
+
+function render() {
+
+    const list = document.getElementById("list");
+
+    const search = document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+    let filtered = items.filter(item =>
+        item.name
+        .toLowerCase()
+        .includes(search)
+    );
+
+    document.getElementById("total")
+        .textContent = items.length;
+
+    document.getElementById("today")
+        .textContent =
+        items.filter(x =>
+            x.lastDate === todayString()
+        ).length;
+
+    document.getElementById("late")
+        .textContent =
+        items.filter(x =>
+            getStatus(x).class === "danger"
+        ).length;
+
+    if (filtered.length === 0) {
+
+        list.innerHTML = `
+            <div class="empty">
+                <div style="font-size:50px">🧠</div>
+                <h3>Henüz bir şey yok</h3>
+                <p>
+                    En son ne zaman yaptığını
+                    hatırlamak istediğin bir şey ekle.
+                </p>
+            </div>
+        `;
+
+        return;
+    }
+
+    /* Gecikenler üstte */
+
+    filtered.sort((a,b) => {
+
+        const sa = getStatus(a);
+        const sb = getStatus(b);
+
+        const score = {
+            danger: 3,
+            warning: 2,
+            "": 1,
+            good: 0
+        };
+
+        return score[sb.class] -
+               score[sa.class];
+
+    });
+
+    list.innerHTML = filtered.map(item => {
+
+        const days = daysBetween(
+            item.lastDate,
+            todayString()
+        );
+
+        const avg = calculateAverage(item);
+
+        const status = getStatus(item);
+
+        let lastText;
+
+        if (days === 0) {
+
+            lastText = "Bugün";
+
+        } else if (days === 1) {
+
+            lastText = "Dün";
+
+        } else {
+
+            lastText = `${days} gün önce`;
+
+        }
+
+        let averageText = "";
+
+        if (avg) {
+
+            averageText =
+                `Genellikle ${avg} günde bir`;
+
+        } else {
+
+            averageText =
+                "Henüz yeterli veri yok";
+
+        }
+
+        return `
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <div class="icon">
+                    ${item.emoji}
+                </div>
+
+                <div>
+
+                    <div class="title">
+                        ${escapeHtml(item.name)}
+                    </div>
+
+                    <div class="last">
+                        Son: ${lastText}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="info">
+
+                <div class="days">
+                    ${averageText}
+                </div>
+
+                <div class="badge ${status.class}">
+                    ${status.text}
+                </div>
+
+            </div>
+
+            <div class="buttons">
+
+                <button
+                    class="done"
+                    onclick="markDone('${item.id}')"
+                >
+                    ✓ Bugün yaptım
+                </button>
+
+                <button
+                    class="edit"
+                    onclick="editItem('${item.id}')"
+                >
+                    ✏️
+                </button>
+
+                <button
+                    class="delete"
+                    onclick="deleteItem('${item.id}')"
+                >
+                    🗑️
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* -------------------------
+   YENİ EKLE
+------------------------- */
+
+function openAdd() {
+
+    editingId = null;
+
+    document.getElementById("modalTitle")
+        .textContent = "Yeni şey";
+
+    document.getElementById("name")
+        .value = "";
+
+    document.getElementById("emoji")
+        .value = "🧠";
+
+    document.getElementById("date")
+        .value = todayString();
+
+    document.getElementById("modalBg")
+        .style.display = "flex";
+}
+
+
+/* -------------------------
+   DÜZENLE
+------------------------- */
+
+function editItem(id) {
+
+    const item = items.find(x => x.id === id);
+
+    if (!item) return;
+
+    editingId = id;
+
+    document.getElementById("modalTitle")
+        .textContent = "Düzenle";
+
+    document.getElementById("name")
+        .value = item.name;
+
+    document.getElementById("emoji")
+        .value = item.emoji;
+
+    document.getElementById("date")
+        .value = item.lastDate;
+
+    document.getElementById("modalBg")
+        .style.display = "flex";
+}
+
+
+/* -------------------------
+   KAYDET
+------------------------- */
+
+function saveItem() {
+
+    const name =
+        document.getElementById("name")
+        .value.trim();
+
+    const emoji =
+        document.getElementById("emoji")
+        .value.trim() || "🧠";
+
+    const date =
+        document.getElementById("date")
+        .value;
+
+    if (!name || !date) {
+
+        alert("Lütfen gerekli alanları doldur.");
+
+        return;
+    }
+
+
+    if (editingId) {
+
+        const item =
+            items.find(x => x.id === editingId);
+
+        item.name = name;
+        item.emoji = emoji;
+
+        if (item.lastDate !== date) {
+
+            item.history.push(date);
+
+            item.lastDate = date;
+
+        }
+
+    } else {
+
+        items.push({
+
+            id:
+                Date.now().toString(),
+
+            name: name,
+
+            emoji: emoji,
+
+            lastDate: date,
+
+            history: [date]
+
+        });
+
+    }
+
+
+    saveData();
+
+    closeModal();
+
+    render();
+}
+
+
+/* -------------------------
+   BUGÜN YAPTIM
+------------------------- */
+
+function markDone(id) {
+
+    const item = items.find(x => x.id === id);
+
+    if (!item) return;
+
+    const today = todayString();
+
+    if (item.lastDate !== today) {
+
+        item.lastDate = today;
+
+        if (!item.history.includes(today)) {
+
+            item.history.push(today);
+
+        }
+
+        saveData();
+
+        render();
+
+    }
+
+}
+
+
+/* -------------------------
+   SİL
+------------------------- */
+
+function deleteItem(id) {
+
+    const item = items.find(x => x.id === id);
+
+    if (!item) return;
+
+    if (
+        confirm(
+            `"${item.name}" silinsin mi?`
+        )
+    ) {
+
+        items =
+            items.filter(x => x.id !== id);
+
+        saveData();
+
+        render();
+
+    }
+
+}
+
+
+/* -------------------------
+   MODAL KAPAT
+------------------------- */
+
+function closeModal() {
+
+    document.getElementById("modalBg")
+        .style.display = "none";
+
+}
+
+
+/* -------------------------
+   HTML GÜVENLİĞİ
+------------------------- */
+
+function escapeHtml(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+/* -------------------------
+   BAŞLAT
+------------------------- */
+
+render();
+
+</script>
+
+</body>
+</html>
